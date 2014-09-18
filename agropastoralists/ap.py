@@ -1,5 +1,27 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
+#
+# Copyright (c) 2014
+# COMPUTER APPLICATIONS IN SCIENCE & ENGINEERING
+# BARCELONA SUPERCOMPUTING CENTRE - CENTRO NACIONAL DE SUPERCOMPUTACIÓN
+# http://www.bsc.es
+#
+# This file is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# Cassandra is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#  
+# You should have received a copy of the GNU General Public 
+# License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+# 
+#
+
+import os, sys
 import random
 import math
 import sys
@@ -7,13 +29,11 @@ import xml.etree.ElementTree
 import argparse
 import logging
 
-pandoraDir = '/home/xrubio/workspace/pandora/'
+pandoraPath = os.getenv('PANDORAPATH', '/usr/local/pandora')
+sys.path.append(pandoraPath+'/bin')
+sys.path.append(pandoraPath+'/lib')
 
-sys.path.append(pandoraDir+'/pandora/')
-sys.path.append(pandoraDir+'/pandora/pyPandora/')
-
-from pyPandora import Point2DInt, Agent, World, Simulation, SizeInt
-
+from pyPandora import Point2DInt, Agent, World, Config, SizeInt
 
 def enum(**enums):
     """ converts a sequence of values to an C++ style enum """
@@ -22,7 +42,6 @@ def enum(**enums):
 
 cellTypes = enum(eDune=0, eWater=1, eInterdune=2)
 cellState = enum(eWild=0, eField=1, eFallow=2)
-
 
 class AP(Agent):
     newId = 0
@@ -118,7 +137,7 @@ class AP(Agent):
         cropCalories = self.getWorld().computeCropCalories()
         if cropCalories == 0:
             return max(1, len(self._plots))
-        numberPlots = int(math.ceil(self.getWorld()._config._reserve*self.getNeededCalories() / cropCalories))
+        numberPlots = int(math.ceil(self.getWorld().config._reserve*self.getNeededCalories() / cropCalories))
         return numberPlots
 
     def getNumberOfIndividuals(self):
@@ -210,7 +229,7 @@ class AP(Agent):
         return -1
 
     def createAgent(self, index):
-        nearAgents = self.getWorld().getNeighboursIds(self, self.getWorld()._size._width, self._type)
+        nearAgents = self.getWorld().getNeighboursIds(self, self.getWorld().config.size._width, self._type)
         for i in range(0, len(nearAgents)):
             agentId = nearAgents[i]
             agent = self.getWorld().getAgent(agentId)
@@ -250,17 +269,16 @@ class AP(Agent):
             calories = calories + 365.0 * (600.0 + self._population[i] * yearlyIncrement)
         if calories == 0:
             raise AssertionError('calories of agent: ' + str(self) + ' to 0')
-        neededCalories = calories * self.getWorld()._config._requiredNeedsPercentage
+        neededCalories = calories * self.getWorld().config._requiredNeedsPercentage
         return neededCalories
 
     def __str__(self):
         return 'agent :' + self.id + ' home at: ' + str(self.position) + ' plots: ' + str(
             len(self._plots)) + ' pop:' + str(self.getNumberOfIndividuals())
 
-class MyWorldConfig():
-    def __init__(self):
-        self._size = SizeInt(0,0)
-        self._numSteps = 0
+class MyWorldConfig(Config):
+    def __init__(self, xmlFile):
+        Config.__init__(self, xmlFile)
 
         # climate
         self._climateMean = 0
@@ -284,45 +302,33 @@ class MyWorldConfig():
         self._cropsMaxRain = 0.0
         self._reserve = 1.0
 
-    def deserialize(self, xmlFile):
-        tree = xml.etree.ElementTree.parse(xmlFile)
-        root = tree.getroot()   
+    def loadParams(self):
         
-        self._resultsFile = str(root.find('output').get('resultsFile'))
-        self._logsDir = str(root.find('output').get('logsDir'))
-
-        self._size._width = int(root.find('size').get('width'))
-        self._size._height = int(root.find('size').get('height'))
-        self._numSteps = int(root.find('numSteps').get('value'))
-        self._serializeResolution = int(root.find('numSteps').get('serializeResolution'))
-
         # climate
-        self._climateMean = float(root.find('climate').get('mean'))
-        self._climateSd = float(root.find('climate').get('sd'))
+        self._climateMean = self.getParamFloat('climate', 'mean')
+        self._climateSd = self.getParamFloat('climate', 'sd')
         # agents
-        self._initialPopulation = int(root.find('agents').get('initialPopulation'))
-        self._locationTries = int(root.find('agents').get('locationTries'))
-        self._requiredNeedsPercentage = float(root.find('agents').get('requiredNeedsPercentage'))
+        self._initialPopulation = self.getParamInt('agents', 'initialPopulation')
+        self._locationTries = self.getParamInt('agents', 'locationTries')
+        self._requiredNeedsPercentage = self.getParamFloat('agents', 'requiredNeedsPercentage')
         # animals
-        self._animalsCaKg = int(root.find('agents').find('animals').get('caloriesPerKilo'))
-        self._animalsKg = int(root.find('agents').find('animals').get('kilos'))
+        self._animalsCaKg = self.getParamInt('agents/animals', 'caloriesPerKilo')
+        self._animalsKg = self.getParamInt('agents/animals', 'kilos')
         # crops
-        self._cropsKgHa = int(root.find('agents').find('crops').get('kilorPerHa'))
-        self._cropsCaKg = int(root.find('agents').find('crops').get('caloriesPerKilo'))
+        self._cropsKgHa = self.getParamInt('agents/crops', 'kilosPerHa')
+        self._cropsCaKg = self.getParamInt('agents/crops', 'caloriesPerKilo')
         # percentage of theoretical crop that the agent will try to collect
-        self._reserve = float(root.find('agents').find('crops').get('reserve'))
-        self._cropsVariability = float(root.find('agents').find('crops').get('variability'))
-        self._cropsMinRain = float(root.find('agents').find('crops').find('neededRain').get('min'))
-        self._cropsOptimalRain = float(root.find('agents').find('crops').find('neededRain').get('optimal'))
-        self._cropsMaxRain = float(root.find('agents').find('crops').find('neededRain').get('max'))
+        self._reserve = self.getParamFloat('agents/crops', 'reserve')
+        self._cropsVariability = self.getParamFloat('agents/crops', 'variability')
+        self._cropsMinRain = self.getParamFloat('agents/crops/neededRain', 'min')
+        self._cropsOptimalRain = self.getParamFloat('agents/crops/neededRain', 'optimal')
+        self._cropsMaxRain = self.getParamFloat('agents/crops/neededRain', 'max')
 
 class MyWorld(World):
-    def __init__(self, simulation, config):
-        World.__init__(self, simulation, MyWorld.useOpenMPSingleNode(config._resultsFile))
-        self._config = config
-        self._climate = Climate(self._config._climateMean, self._config._climateSd)
+    def __init__(self, config):
+        World.__init__(self, config)
+        self._climate = Climate(self.config._climateMean, self.config._climateSd)
         self._yearRainfall = 0
-        self._size = simulation.size
 
     def createRasters(self):
         self.registerDynamicRaster("ground", True)
@@ -333,7 +339,7 @@ class MyWorld(World):
         self.getDynamicRaster("ground").setInitValues(cellTypes.eDune, cellTypes.eInterdune, cellTypes.eWater)
         self.getDynamicRaster("groundState").setInitValues(cellState.eWild, cellState.eFallow, cellState.eWild)
         self.getDynamicRaster("calories").setInitValues(0, 100000000, 0)
-        self.getDynamicRaster("yearsUsed").setInitValues(0, 1 + self.getSimulation().numSteps, 0)
+        self.getDynamicRaster("yearsUsed").setInitValues(0, 1 + self.config.numSteps, 0)
 
         index = Point2DInt(0, 0)
         for index._x in range(self.getBoundaries().left, self.getBoundaries().right+1):
@@ -342,13 +348,13 @@ class MyWorld(World):
                 self.setValue('ground', index, cellType)
 
         # first rain is optimal
-        self._yearRainfall = self._config._cropsOptimalRain
+        self._yearRainfall = self.config._cropsOptimalRain
         self.updateCalories()
 
     def createAgents(self):
-        AP._caloriesPerAnimal = self._config._animalsCaKg * self._config._animalsKg
-        AP._locationTries = self._config._locationTries
-        for i in range(self._config._initialPopulation):
+        AP._caloriesPerAnimal = self.config._animalsCaKg * self.config._animalsKg
+        AP._locationTries = self.config._locationTries
+        for i in range(self.config._initialPopulation):
             myAP = AP('ap_' + str(AP.newId))
             AP.newId = AP.newId + 1
             self.addAgent(myAP)
@@ -406,20 +412,18 @@ class MyWorld(World):
     def getPercentageOfOptimalCrop(self):
         """ returns the percentage of an optimal crop that will be collected with current rainFall """
         # if rain out of the interval min-max return 0.6
-        if self._yearRainfall <= self._config._cropsMinRain:
+        if self._yearRainfall <= self.config._cropsMinRain:
             return 0.0
-#            return 1.0 - (self._config._cropsOptimalRain-self._config._cropsMinRain)*0.4/(self._config._cropsOptimalRain-self._config._cropsMinRain)
-        if self._yearRainfall >= self._config._cropsMaxRain:
+        if self._yearRainfall >= self.config._cropsMaxRain:
             return 0.0
-#           return 1.0 - (self._config._cropsMaxRain-self._config._cropsOptimalRain)*0.4/(self._config._cropsMaxRain-self._config._cropsOptimalRain)
 
         # value decrease linearly from optimal rain (value 1.0) to min/max rain (value 0.6), and is 0 for the rest of rain values
         #  if rain < optimal value then value = 1 - (optimal-rain)*0.4/(optimal-min)
-        if self._yearRainfall < self._config._cropsOptimalRain:
-            return 1.0 - (self._config._cropsOptimalRain-self._yearRainfall)*0.4/(self._config._cropsOptimalRain-self._config._cropsMinRain)
+        if self._yearRainfall < self.config._cropsOptimalRain:
+            return 1.0 - (self.config._cropsOptimalRain-self._yearRainfall)*0.4/(self.config._cropsOptimalRain-self.config._cropsMinRain)
         #  if rain > optimal value then value = 1 - (rain-optimal)*0.4/(max-optimal)
         else:
-            return 1.0 - (self._yearRainfall-self._config._cropsOptimalRain)*0.4/(self._config._cropsMaxRain-self._config._cropsOptimalRain)
+            return 1.0 - (self._yearRainfall-self.config._cropsOptimalRain)*0.4/(self.config._cropsMaxRain-self.config._cropsOptimalRain)
 
     def computeCropCalories(self):
         """ Calories obtained from one crop cell depend from rainfall and it's a normally distributed
@@ -427,9 +431,9 @@ class MyWorld(World):
         This gives a calorie value that includes surplus based on landscape variability"""
 
         value = self.getPercentageOfOptimalCrop()
-        value = random.normalvariate(value, self._config._cropsVariability)
+        value = random.normalvariate(value, self.config._cropsVariability)
         value = max(0.0, value)
-        calories = int(value * self._config._cropsKgHa * self._config._cropsCaKg )
+        calories = int(value * self.config._cropsKgHa * self.config._cropsCaKg )
         return calories
 
     def updateCalories(self):
@@ -471,13 +475,10 @@ def main():
     logging.basicConfig(filename='rain.log', level=logging.INFO)
     parser.add_argument('-x', '--config', default='config.xml', help='config file')
     args = parser.parse_args()
-    config = MyWorldConfig()
-    config.deserialize(args.config)
 
-    mySimulation = Simulation(config._size, config._numSteps, config._serializeResolution)
-    myWorld = MyWorld(mySimulation, config)
+    config = MyWorldConfig(args.config)
+    myWorld = MyWorld(config)
     myWorld.initialize()
-
     myWorld.run()
 
 

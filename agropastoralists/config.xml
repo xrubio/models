@@ -6,7 +6,7 @@
 	<size width="50" height="50"/>
     <agents initialPopulation="100" locationTries="5" requiredNeedsPercentage="1">
         <animals caloriesPerKilo="1900" kilos="210"/>
-        <crops kilorPerHa="767" caloriesPerKilo="3530" reserve="1.5" variability="0.1">
+        <crops kilosPerHa="767" caloriesPerKilo="3530" reserve="1.5" variability="0.1">
             <neededRain min="112.5" optimal="444" max="1036"/>
         </crops>
     </agents>

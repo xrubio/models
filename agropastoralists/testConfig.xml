@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<config>  
+	<!-- Global simulation parameters -->
+	<output resultsFile="./testData/ap.h5" logsDir="./testLogs"/>
+	<numSteps value="5" serializeResolution="1"/>
+	<size width="4" height="4"/>
+    <agents initialPopulation="0" locationTries="10" requiredNeedsPercentage="1">
+        <animals caloriesPerKilo="1900" kilos="210"/>
+        <crops kilosPerHa="767" caloriesPerKilo="3530" reserve="1.0" variability="0.000001">
+            <neededRain min="112.5" optimal="444" max="1036"/>
+        </crops>
+    </agents>
+    <climate mean="468.0" sd="0.000001"/> 
+</config>
+
