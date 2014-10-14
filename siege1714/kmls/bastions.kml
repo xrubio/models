@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>bastions</name>
+<Schema name="bastions" id="bastions">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="id" type="int"></SimpleField>
+	<SimpleField name="nom" type="string"></SimpleField>
+	<SimpleField name="altura" type="float"></SimpleField>
+	<SimpleField name="amplada" type="float"></SimpleField>
+	<SimpleField name="par_alt" type="float"></SimpleField>
+	<SimpleField name="par_amp" type="float"></SimpleField>
+	<SimpleField name="gola" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#bastions">
+		<SimpleData name="nom">llevant</SimpleData>
+		<SimpleData name="altura">7.3</SimpleData>
+		<SimpleData name="amplada">8.0</SimpleData>
+		<SimpleData name="par_alt">0.0</SimpleData>
+		<SimpleData name="par_amp">6.0</SimpleData>
+		<SimpleData name="gola">0.0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.189811168024867,41.386937023458763 2.189514740624595,41.387343885506795 2.189573653885047,41.387399159570172 2.189493946781077,41.387418546897919 2.189646614765487,41.387628563502851 2.190642165956938,41.387449667584228 2.189971323588878,41.386838407225099 2.189811168024867,41.386937023458763</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#bastions">
+		<SimpleData name="nom">santa clara</SimpleData>
+		<SimpleData name="altura">8.7</SimpleData>
+		<SimpleData name="amplada">0.0</SimpleData>
+		<SimpleData name="par_alt">0.0</SimpleData>
+		<SimpleData name="par_amp">6.0</SimpleData>
+		<SimpleData name="gola">4.0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.187465475830847,41.388117408503938 2.18739838964909,41.388186755397726 2.187502225678753,41.388357053126207 2.18740765888489,41.388506001000145 2.186178846844486,41.388801534807655 2.18586230935343,41.388694564551159 2.185562626141741,41.388298455743907 2.185306123094887,41.388156998553093 2.18501014715023,41.388251892352599 2.185779024668856,41.388945047205524 2.186989159617137,41.389141404914575 2.187620919779695,41.388397788731524 2.187465475830847,41.388117408503938</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#bastions">
+		<SimpleData name="nom">portal nou</SimpleData>
+		<SimpleData name="altura">8.7</SimpleData>
+		<SimpleData name="amplada">8.0</SimpleData>
+		<SimpleData name="par_alt">0.0</SimpleData>
+		<SimpleData name="par_amp">6.0</SimpleData>
+		<SimpleData name="gola">2.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.180737791962746,41.390285830673896 2.179817828281855,41.390768020890114 2.179906461570898,41.391092819769767 2.180742380679848,41.39150273684627 2.181097114593782,41.390677389166108 2.180737791962746,41.390285830673896</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#bastions">
+		<SimpleData name="nom">sant pere</SimpleData>
+		<SimpleData name="altura">8.3</SimpleData>
+		<SimpleData name="amplada">7.0</SimpleData>
+		<SimpleData name="par_alt">0.0</SimpleData>
+		<SimpleData name="par_amp">6.0</SimpleData>
+		<SimpleData name="gola">3.0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.178348079023621,41.390631038510627 2.177184047747733,41.389984360344421 2.176788199546087,41.390390478178894 2.177221994553379,41.391176569198713 2.178110470211492,41.391093149792191 2.178348079023621,41.390631038510627</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#bastions">
+		<SimpleData name="nom">jonqueres</SimpleData>
+		<SimpleData name="altura">8.3</SimpleData>
+		<SimpleData name="par_amp">6.0</SimpleData>
+		<SimpleData name="gola">3.0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.172658717946189,41.389443882738199 2.173924674631617,41.389274126869438 2.174071845063819,41.38903884357736 2.172773122691095,41.388448245600706 2.172481608990383,41.388695264347668 2.172658717946189,41.389443882738199</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#bastions">
+		<SimpleData name="nom">ngel</SimpleData>
+		<SimpleData name="altura">9.0</SimpleData>
+		<SimpleData name="amplada">8.0</SimpleData>
+		<SimpleData name="par_amp">6.0</SimpleData>
+		<SimpleData name="gola">1.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.171842376629633,41.386934085321528 2.171146742037928,41.386277544820238 2.170933019559694,41.386410143925367 2.170859006321188,41.386895065495885 2.171612097052273,41.387034628680752 2.171842376629633,41.386934085321528</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#bastions">
+		<SimpleData name="nom">tallers</SimpleData>
+		<SimpleData name="altura">9.0</SimpleData>
+		<SimpleData name="amplada">7.0</SimpleData>
+		<SimpleData name="par_amp">6.0</SimpleData>
+		<SimpleData name="gola">3.0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.16354186741136,41.386701578824862 2.164809591090521,41.386391409573072 2.165026921290357,41.385977795247463 2.164014883821395,41.385529704829651 2.163553246169398,41.385813790254375 2.16354186741136,41.386701578824862</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#bastions">
+		<SimpleData name="nom">sant antoni</SimpleData>
+		<SimpleData name="altura">9.0</SimpleData>
+		<SimpleData name="amplada">8.0</SimpleData>
+		<SimpleData name="par_amp">6.0</SimpleData>
+		<SimpleData name="gola">3.0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.162300568840179,41.378343998215826 2.162732501804,41.379049774789621 2.163120934313342,41.379180351955114 2.163649394062509,41.378285514578842 2.163329067680821,41.378159854102819 2.162300568840179,41.378343998215826</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#bastions">
+		<SimpleData name="nom">el rei</SimpleData>
+		<SimpleData name="altura">8.0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.176144942563703,41.374649734199025 2.176423549062954,41.374747542282385 2.176500426299524,41.374703379440781 2.176510355634178,41.374588474087012 2.176604191084289,41.374544432535195 2.17639648058559,41.374204404351566 2.175961865610382,41.374373757395141 2.176144942563703,41.374649734199025</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#bastions">
+		<SimpleData name="nom">migdia</SimpleData>
+		<SimpleData name="altura">10.0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.185658201524919,41.382912712989693 2.185351075903954,41.383057453104179 2.185822071818459,41.383373777755494 2.186095276401335,41.383228796457139 2.185658201524919,41.382912712989693</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

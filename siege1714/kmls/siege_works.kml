@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>siege_works</name>
+<Schema name="siege_works" id="siege_works">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="id" type="int"></SimpleField>
+	<SimpleField name="nom" type="string"></SimpleField>
+	<SimpleField name="descripcio" type="string"></SimpleField>
+	<SimpleField name="tipus" type="string"></SimpleField>
+	<SimpleField name="dist_cc" type="float"></SimpleField>
+	<SimpleField name="dist_per" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">17</SimpleData>
+		<SimpleData name="nom">PAR2</SimpleData>
+		<SimpleData name="descripcio">Segona Parallela</SimpleData>
+		<SimpleData name="tipus">Parallela</SimpleData>
+		<SimpleData name="dist_cc">398.00</SimpleData>
+		<SimpleData name="dist_per">441.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.188992372838158,41.391257302032969 2.188130326429285,41.391846746931897 2.187654505664256,41.392210327711155 2.187508860354777,41.392359684237057 2.186897545719633,41.392698243387102 2.185900424263455,41.393226562773229 2.185195421108123,41.393390003421146 2.184643154868733,41.393476322070491 2.184130373611156,41.39359901042009 2.183793090962487,41.393740987749702 2.183215727800955,41.393917352401772 2.182895320694337,41.393987262157239 2.182566020999659,41.3941292925619 2.182131976007418,41.394342762223566 2.181698003631159,41.394550215357597 2.181336445942245,41.3947160743624 2.181086789628815,41.394876713329566 2.181141495581851,41.394973348956363 2.181511948385858,41.394735369142801 2.181898072097265,41.394521561118694 2.182243501257886,41.394367616494833 2.182605582237655,41.394159650584882 2.182942794268356,41.39402369164894 2.183366814241093,41.393972563385823 2.183904390139511,41.393783884990782 2.184608295152424,41.393590471699127 2.184761690141793,41.393579423706036 2.185899523657879,41.393298741139759 2.186647085919664,41.392925058192112 2.18703333215934,41.392699202883719 2.187515874062524,41.392437933913193 2.18811263037186,41.391984976190017 2.188741551939768,41.391514195921076 2.189071946480058,41.391281924474889 2.189175855714139,41.391276641368634 2.189147603918292,41.391182265918722 2.188992372838158,41.391257302032969</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">19</SimpleData>
+		<SimpleData name="nom">PAR3</SimpleData>
+		<SimpleData name="descripcio">Tercera parallela</SimpleData>
+		<SimpleData name="tipus">Parallela</SimpleData>
+		<SimpleData name="dist_cc">135.00</SimpleData>
+		<SimpleData name="dist_per">208.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.187302426602962,41.389693405249545 2.187011669714362,41.389950013350216 2.186296617488175,41.390281821059432 2.185035875678679,41.390814284014851 2.184032586398429,41.391198174204987 2.18322143221602,41.391547327294298 2.182594354776772,41.39186770551018 2.182345843150649,41.39193812451586 2.181648757332734,41.392107615133497 2.181120006722154,41.392230176522091 2.180808499362425,41.392227959097987 2.180417496135497,41.39219509762458 2.180368967498018,41.392242875098333 2.180751832565429,41.392287709581623 2.181263703886358,41.392237214522247 2.181656367494389,41.392137746236145 2.182577551238402,41.391933755485724 2.183188579508124,41.391619278830412 2.183758837942539,41.391370679045771 2.185733464569275,41.390602668566167 2.187075041991077,41.38999256889381 2.187358023965737,41.389712934734732 2.187302426602962,41.389693405249545</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">10</SimpleData>
+		<SimpleData name="nom">CC</SimpleData>
+		<SimpleData name="descripcio">Trinxera adjacent al cam cobert</SimpleData>
+		<SimpleData name="tipus">Trinxera</SimpleData>
+		<SimpleData name="dist_cc">5.00</SimpleData>
+		<SimpleData name="dist_per">82.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.180310735747649,41.391791305634243 2.180262056205037,41.39185111278212 2.181153088475484,41.392140181034236 2.181936616352439,41.39081033661251 2.18255954239568,41.390820779247768 2.182517798345525,41.390327220116596 2.18437260173549,41.389558381443145 2.184865168993018,41.389772410974217 2.185212743991114,41.389444025886199 2.187207181123547,41.389644609281831 2.187377081713477,41.389471362767907 2.187681862274418,41.389371253103732 2.187674474255592,41.389323077750902 2.1873776060432,41.389429258677382 2.18718389423373,41.389590306190392 2.185173634992773,41.389377579549091 2.18483397208683,41.389712035976032 2.184389327630655,41.389498346021725 2.182382167728109,41.390314225612926 2.182464524976301,41.390753934796656 2.181905120039863,41.390774020293421 2.181090246485781,41.39205551825556 2.180310735747649,41.391791305634243</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">18</SimpleData>
+		<SimpleData name="nom">PAR2--1</SimpleData>
+		<SimpleData name="descripcio">Extensi de la segona parallela per batre Llevant</SimpleData>
+		<SimpleData name="tipus">Parallela</SimpleData>
+		<SimpleData name="dist_cc">238.00</SimpleData>
+		<SimpleData name="dist_per">286.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.189133831790152,41.391122952580538 2.189180708890008,41.391207498496385 2.190804429517767,41.390388804290772 2.191848124423174,41.389963030890335 2.193101551993106,41.389370287759085 2.195049404502902,41.388168820083521 2.195595627712526,41.387919993174997 2.195722824582637,41.387969005563086 2.195818815340898,41.387957645689582 2.195787757343324,41.387885243790372 2.19548455306796,41.387859062569859 2.195082835911693,41.388048745920102 2.194132213066379,41.388703786054364 2.193376234185384,41.389119566898898 2.192057725680114,41.389808102486697 2.191384126577322,41.39001992496889 2.189133831790152,41.391122952580538</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">20</SimpleData>
+		<SimpleData name="nom">PAR3-1</SimpleData>
+		<SimpleData name="descripcio">Extensi de la tercera parallela per batre Llevant</SimpleData>
+		<SimpleData name="tipus">Parallela</SimpleData>
+		<SimpleData name="dist_cc">55.00</SimpleData>
+		<SimpleData name="dist_per">141.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.187294589357539,41.389681319095608 2.187368204380533,41.389712784217537 2.187871679578574,41.389522978016025 2.189082059825337,41.389182621637246 2.189719232849454,41.388687832280667 2.19014537792976,41.388462247253827 2.191057826191581,41.3883122654332 2.191603171393987,41.388135636162936 2.191909280068585,41.387927247355023 2.191973398406334,41.387909651442087 2.192052820205269,41.387946301566863 2.192101262655866,41.387904533901633 2.192061924098314,41.387856134469232 2.191894200148524,41.387854956627699 2.19159600413686,41.38806941639325 2.191098506318456,41.388252397418256 2.190113878124807,41.388425933135899 2.18970408051035,41.388621556170683 2.189026599254766,41.389146138355521 2.188137048287934,41.389380481165659 2.187294589357539,41.389681319095608</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">1</SimpleData>
+		<SimpleData name="nom">BAT1</SimpleData>
+		<SimpleData name="descripcio">Bateria (20 de 36, 54 de 24, 20 morters)</SimpleData>
+		<SimpleData name="tipus">Bateria canons</SimpleData>
+		<SimpleData name="dist_cc">410.00</SimpleData>
+		<SimpleData name="dist_per">475.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.187717056853709,41.392319046451732 2.187467200583463,41.392497744158881 2.186324961980459,41.393133319482125 2.185883098327139,41.393334717290166 2.185241919101559,41.393504625190189 2.184264808192917,41.393708240697585 2.183527017600354,41.393937607961277 2.183524759460278,41.394118053746922 2.184292998416456,41.394009210253934 2.184399543985319,41.393793411375775 2.185727807441425,41.393616341950406 2.187866945648585,41.392470489424007 2.187717056853709,41.392319046451732</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">5</SimpleData>
+		<SimpleData name="nom">BAT4</SimpleData>
+		<SimpleData name="descripcio">Bateria (6 de 24) per batre Portal Nou</SimpleData>
+		<SimpleData name="tipus">Bateria canons</SimpleData>
+		<SimpleData name="dist_cc">67.00</SimpleData>
+		<SimpleData name="dist_per">134.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.181226999243419,41.392615923211011 2.181290068361506,41.392682541340733 2.181731262563432,41.392535294964958 2.181524419953742,41.392467654430995 2.181226999243419,41.392615923211011</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">3</SimpleData>
+		<SimpleData name="nom">BAT2-3</SimpleData>
+		<SimpleData name="descripcio">Bateria (6 de 24) per batre el flanc esquerra de Sta. Clara</SimpleData>
+		<SimpleData name="tipus">Bateria canons</SimpleData>
+		<SimpleData name="dist_cc">46.00</SimpleData>
+		<SimpleData name="dist_per">103.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.181825014533266,41.391429128904257 2.18227026653213,41.391594709860016 2.182351420807302,41.391493024862854 2.181842497468192,41.391308945300374 2.181825014533266,41.391429128904257</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">11</SimpleData>
+		<SimpleData name="nom">MOR2-1</SimpleData>
+		<SimpleData name="descripcio">Bateria de 4-8 morters/pedrers</SimpleData>
+		<SimpleData name="tipus">Bateria morters</SimpleData>
+		<SimpleData name="dist_cc">22.00</SimpleData>
+		<SimpleData name="dist_per">64.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.187320348404501,41.389537131461758 2.187391258125316,41.389615832464393 2.188033665911746,41.389343659264199 2.187874599057403,41.389288398052436 2.187505099088562,41.389454220627442 2.187425153774146,41.389459671470611 2.187320348404501,41.389537131461758</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">12</SimpleData>
+		<SimpleData name="nom">MOR2-2</SimpleData>
+		<SimpleData name="descripcio">Bateria de 4-8 morters/pedrers</SimpleData>
+		<SimpleData name="tipus">Bateria morters</SimpleData>
+		<SimpleData name="dist_cc">26.00</SimpleData>
+		<SimpleData name="dist_per">81.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.181377941928265,41.392045534710782 2.181481324707933,41.392082362580375 2.181643787560767,41.391866963970621 2.181540405026364,41.391830136247911 2.181377941928265,41.392045534710782</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">2</SimpleData>
+		<SimpleData name="nom">BAT2-2</SimpleData>
+		<SimpleData name="descripcio">Bateria (12 de 24) per eixamplar la cortina</SimpleData>
+		<SimpleData name="tipus">Bateria canons</SimpleData>
+		<SimpleData name="dist_cc">160.00</SimpleData>
+		<SimpleData name="dist_per">220.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.184552960280947,41.39110561699696 2.183838785866133,41.391365230776117 2.18390140510647,41.391467936678588 2.184631780396094,41.391190391134664 2.184552960280947,41.39110561699696</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">4</SimpleData>
+		<SimpleData name="nom">BAT3</SimpleData>
+		<SimpleData name="descripcio">Bateria (8 de 24) per atacar la cortina vora Santa Clara</SimpleData>
+		<SimpleData name="tipus">Bateria canons</SimpleData>
+		<SimpleData name="dist_cc">78.00</SimpleData>
+		<SimpleData name="dist_per">125.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.185370710077936,41.390227146171846 2.185473566731301,41.39030607452402 2.186116439318204,41.389997822993159 2.18598193411239,41.389894609718496 2.185370710077936,41.390227146171846</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">14</SimpleData>
+		<SimpleData name="nom">MOR5-2</SimpleData>
+		<SimpleData name="descripcio">Bateria (8 morters)</SimpleData>
+		<SimpleData name="tipus">Bateria morters</SimpleData>
+		<SimpleData name="dist_cc">339.00</SimpleData>
+		<SimpleData name="dist_per">394.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.179970503302022,41.395028170764142 2.18043227926951,41.395151768796772 2.180577267058896,41.395056555193463 2.18006801884854,41.394896527100251 2.179970503302022,41.395028170764142</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">6</SimpleData>
+		<SimpleData name="nom">BAT5-1</SimpleData>
+		<SimpleData name="descripcio">Bateria (10 de 24) contra Llevant i Sta. Eullia</SimpleData>
+		<SimpleData name="tipus">Bateria canons</SimpleData>
+		<SimpleData name="dist_cc">286.00</SimpleData>
+		<SimpleData name="dist_per">339.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.190922297875314,41.390546033539067 2.191000976524828,41.390642833139076 2.191434371964537,41.39047744839575 2.191737586594317,41.390503640373424 2.191787297675357,41.390359619992651 2.191372561648683,41.390308582850544 2.190922297875314,41.390546033539067</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">7</SimpleData>
+		<SimpleData name="nom">BAT5-2</SimpleData>
+		<SimpleData name="descripcio">Bateria (6 de 24) contra muralla darrera Santa Clara</SimpleData>
+		<SimpleData name="tipus">Bateria canons</SimpleData>
+		<SimpleData name="dist_cc">303.00</SimpleData>
+		<SimpleData name="dist_per">350.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.188589860062348,41.39182893462511 2.188328728461985,41.392272232158483 2.188472052587141,41.392309335506766 2.188796932526325,41.391878517903784 2.188589860062348,41.39182893462511</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">15</SimpleData>
+		<SimpleData name="nom">MOR6-1</SimpleData>
+		<SimpleData name="descripcio">Bateria (8 morters) per disparar constantment contra la ciutat</SimpleData>
+		<SimpleData name="tipus">Bateria morters</SimpleData>
+		<SimpleData name="dist_cc">766.00</SimpleData>
+		<SimpleData name="dist_per">828.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.171064762514086,41.397436678922006 2.172341619560134,41.397542117261708 2.172376623900124,41.397301753538066 2.171067819663849,41.397196085431766 2.171064762514086,41.397436678922006</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">8</SimpleData>
+		<SimpleData name="nom">BAT6-1</SimpleData>
+		<SimpleData name="descripcio">Bateria (8 de 16) per disparar a ricochet</SimpleData>
+		<SimpleData name="tipus">Bateria canons</SimpleData>
+		<SimpleData name="dist_cc">814.00</SimpleData>
+		<SimpleData name="dist_per">849.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.16886774243232,41.396819290570619 2.170910200935765,41.397026518886449 2.170945515988835,41.396762096272894 2.168997694232007,41.396651798358221 2.16886774243232,41.396819290570619</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">9</SimpleData>
+		<SimpleData name="nom">CAP</SimpleData>
+		<SimpleData name="descripcio">Trinxera de Caputxins</SimpleData>
+		<SimpleData name="tipus">Trinxera</SimpleData>
+		<SimpleData name="dist_cc">678.00</SimpleData>
+		<SimpleData name="dist_per">739.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.168383470529447,41.396581191204447 2.169246467615586,41.396563364036872 2.169473191067961,41.396324385298946 2.169983801080079,41.396376193052262 2.170204706786451,41.39659434043012 2.170809950993696,41.396743073201272 2.171099655295447,41.396576729789729 2.171288308178038,41.396818704280243 2.171894167834195,41.396919312676303 2.172151918588668,41.396752736630333 2.17301217245199,41.396951415473424 2.173587303497797,41.396955547868778 2.173877306456947,41.396765138044522 2.175090252034726,41.396870086960533 2.175472152012444,41.396993132168106 2.175432293564866,41.397618446954972 2.175750294303329,41.3977410332744 2.175855269233643,41.39701993860217 2.175633126933825,41.396898039416264 2.175220188075936,41.396702587574111 2.174708657880202,41.396722981122444 2.173686815610005,41.396667523917216 2.173653340250649,41.396787591280159 2.173301567277884,41.396809125843809 2.172568205108082,41.396683546438233 2.172025333542687,41.396655579548302 2.171831791581792,41.396798555945232 2.171386913423998,41.396602860465165 2.171070455116705,41.396359965425205 2.170844348916182,41.396550828661034 2.170460930850013,41.396548064932034 2.170081491733184,41.396232528415887 2.169283014567966,41.396202704602992 2.169120806581418,41.396394025776097 2.168383470529447,41.396581191204447</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">23</SimpleData>
+		<SimpleData name="nom">TCOM3</SimpleData>
+		<SimpleData name="descripcio">Trinxera de comunicaci entre 2ona i 3era parallela</SimpleData>
+		<SimpleData name="tipus">Trinxera de comunicacions</SimpleData>
+		<SimpleData name="dist_cc">153.00</SimpleData>
+		<SimpleData name="dist_per">200.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.187212396143179,41.389867215874204 2.187099153173612,41.38998070844422 2.187315554135359,41.389922083122094 2.187567097332485,41.390248691036945 2.187637259286423,41.390387540582765 2.18721840588831,41.390667306289998 2.187177196199689,41.390769276940865 2.187240869054494,41.390787772921698 2.187258117080623,41.390685632994774 2.187555740138875,41.390519303761607 2.187481383970229,41.390717286838132 2.187880893526733,41.390708076554674 2.187805789430692,41.390966208533506 2.187226663322217,41.391286950561657 2.187032720731411,41.39146604231761 2.187071757912803,41.391538502895038 2.187151855663694,41.391521022587767 2.187128718040464,41.391454689761801 2.18787730016577,41.390996790283687 2.1881969390939,41.390987015132723 2.18812176106571,41.391251162183238 2.188457600167377,41.391223454427831 2.188391008725187,41.391439539030209 2.188454832206313,41.391446004607104 2.188670264599013,41.391465570092286 2.188731964186866,41.391415839761329 2.188503653597663,41.391374164177925 2.188633544272276,41.391206649070256 2.188594281150983,41.391152233614953 2.188202531688591,41.391179547313151 2.18832473478556,41.390987916719354 2.188887803753418,41.390673071335797 2.188975737643285,41.390667675789352 2.189039485679512,41.390680155907646 2.189080094407513,41.390626303532443 2.189000820588506,41.390577621615428 2.188736196645654,41.390659971693438 2.188269647255678,41.390921358724519 2.187942171145926,41.390919047970932 2.188001150566175,41.390672832902496 2.187641876728634,41.390658266094931 2.187627849339937,41.390501766709455 2.187789090124501,41.390382597056892 2.18757650734162,41.390134464910894 2.187395649832432,41.38990460262152 2.187420360136288,41.389844623146168 2.187212396143179,41.389867215874204</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">24</SimpleData>
+		<SimpleData name="nom">TCOM4</SimpleData>
+		<SimpleData name="descripcio">Trinxera de comunicaci entre 2ona i 3era parallela</SimpleData>
+		<SimpleData name="tipus">Trinxera de comunicacions</SimpleData>
+		<SimpleData name="dist_cc">125.00</SimpleData>
+		<SimpleData name="dist_per">185.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.183039775113042,41.39393414938661 2.181804943792252,41.393666713065599 2.182136278502927,41.393362283654461 2.18090869420092,41.393155043171156 2.181568647400666,41.392762723376642 2.180970571405511,41.392680267500509 2.181744378602029,41.392126396982171 2.181560141957426,41.392167138782263 2.18085829439739,41.3927155605883 2.181368433271333,41.392803406814735 2.180772680451309,41.393172121007296 2.182015862596208,41.393409550801479 2.181676388652229,41.39372595276118 2.182830235857552,41.393967375735912 2.182913914083999,41.393971279010358 2.183039775113042,41.39393414938661</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">26</SimpleData>
+		<SimpleData name="nom">ZZ1-1</SimpleData>
+		<SimpleData name="descripcio">Ziga-Zaga per coronar el cam cobert, posteriorment trinxera de comunicaci</SimpleData>
+		<SimpleData name="tipus">Ziga-zaga d'atac</SimpleData>
+		<SimpleData name="dist_cc">66.00</SimpleData>
+		<SimpleData name="dist_per">153.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.185352461244963,41.390674087389819 2.185399279609204,41.390498041340607 2.185295521563066,41.390491291313644 2.185344946432763,41.390371333310156 2.18520916489399,41.39037037186506 2.185234252903555,41.390280318554161 2.185090935122992,41.390243211217161 2.185124160593511,41.390141184765412 2.184988830298204,41.390104133869336 2.185045716682272,41.390026336625588 2.184902850370537,41.389953139863216 2.18497541039097,41.389899515276838 2.184824407071996,41.389838291574421 2.18485711901387,41.389777389945202 2.184785448529368,41.389759815379541 2.184711911549797,41.389891633101115 2.18485545375201,41.389910696306032 2.184854026127731,41.390024978755491 2.184949495755554,41.390055732059587 2.184955905154135,41.39018210081818 2.185043838658355,41.390176708273238 2.185065846931225,41.390333264495702 2.185145868600043,41.390321800438471 2.185160265555506,41.390448225748116 2.185248349610528,41.390430803318637 2.185262972091508,41.390539184017825 2.185342618507776,41.390557794155335 2.185292893088541,41.390701811615301 2.185352461244963,41.390674087389819</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">27</SimpleData>
+		<SimpleData name="nom">ZZ1-2</SimpleData>
+		<SimpleData name="descripcio">Ziga-Zaga per coronar el cam cobert, posteriorment trinxera de comunicaci</SimpleData>
+		<SimpleData name="tipus">Ziga-zaga d'atac</SimpleData>
+		<SimpleData name="dist_cc">66.00</SimpleData>
+		<SimpleData name="dist_per">125.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.182658931504738,41.391814025695624 2.182723131429522,41.391790420146741 2.182685003067478,41.39164577981132 2.182525633853449,41.391614570659129 2.182527216348676,41.391488258586222 2.182392035533921,41.391439174911007 2.182385404911224,41.391330850663323 2.18219416297327,41.391293399164375 2.182179696223121,41.391172988413523 2.182076540663496,41.391118116594136 2.182006691450444,41.390955204334432 2.181870984225494,41.390948224078848 2.181854632712767,41.390978184793525 2.181982201968764,41.390997138004984 2.182020253010794,41.391147793431955 2.182107660262809,41.391184507168482 2.18212996335385,41.391317004422838 2.182353229750128,41.391348668211094 2.182367772225903,41.391463064079304 2.182479066581883,41.391505962671779 2.182469647419021,41.391620188270274 2.182636853225493,41.391663483961764 2.182658931504738,41.391814025695624</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">25</SimpleData>
+		<SimpleData name="nom">TCOM5</SimpleData>
+		<SimpleData name="descripcio">Trinxera de comunicaci darrera la tercera parallela</SimpleData>
+		<SimpleData name="tipus">Trinxera de comunicacions</SimpleData>
+		<SimpleData name="dist_cc">204.00</SimpleData>
+		<SimpleData name="dist_per">265.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.187400715693923,41.390139238940264 2.187441100721167,41.390103431756174 2.187401839249936,41.390049015898725 2.186362276722806,41.390781563396217 2.185751046212617,41.391114101761083 2.185735522089749,41.391077899517526 2.185896917817753,41.390946702840786 2.185737999052848,41.390879408938758 2.185892082482471,41.390694021937705 2.185741451747906,41.390602725090055 2.185629105770003,41.39064403776873 2.185748162948688,41.390705034341863 2.185593478506765,41.39093854007286 2.185745235680462,41.390939614123738 2.185654373576864,41.39117958696194 2.183576118847931,41.391928814520192 2.182927276591534,41.391761820845183 2.182795951850067,41.391826050349302 2.18349594440829,41.391952307185178 2.182740990994814,41.392277794042869 2.181730055635417,41.392631532698381 2.181481224510604,41.39273594210897 2.181582160343754,41.392754678492679 2.181921602866743,41.39264492555953 2.182980988920915,41.392249421503188 2.183904051055348,41.391895048571527 2.185677734800241,41.391227875475948 2.186425499377914,41.390836149029347 2.187400715693923,41.390139238940264</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">13</SimpleData>
+		<SimpleData name="nom">MOR5-1</SimpleData>
+		<SimpleData name="descripcio">Bateria (6 morters)</SimpleData>
+		<SimpleData name="tipus">Bateria morters</SimpleData>
+		<SimpleData name="dist_cc">327.00</SimpleData>
+		<SimpleData name="dist_per">383.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.194598766980554,41.389086023024007 2.194854796612512,41.389051722479245 2.194953608884926,41.388811797836659 2.194697728700686,41.388834068848539 2.194598766980554,41.389086023024007</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">16</SimpleData>
+		<SimpleData name="nom">PAR1</SimpleData>
+		<SimpleData name="descripcio">Primera parallela</SimpleData>
+		<SimpleData name="tipus">Parallela</SimpleData>
+		<SimpleData name="dist_cc">541.00</SimpleData>
+		<SimpleData name="dist_per">587.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.196778092965801,41.390490814655493 2.194527722813003,41.391605978110114 2.193562702787577,41.392128573491803 2.192889679582545,41.392292285525293 2.191797433078961,41.392765850289059 2.190445988168739,41.393526320179447 2.189222613035777,41.39426361498613 2.187224596094847,41.395621028021452 2.185505754689974,41.397026713650092 2.185768175864224,41.397102547711825 2.18612384898288,41.396768202269556 2.187994419142462,41.395385847797975 2.189605720631816,41.3942903755499 2.19266246001487,41.39257943047869 2.193784268477095,41.392298557329354 2.196999365554916,41.390684851906698 2.196778092965801,41.390490814655493</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">22</SimpleData>
+		<SimpleData name="nom">TCOM2</SimpleData>
+		<SimpleData name="descripcio">Trinxera de comunicacions entre 1era i 2ona parallela</SimpleData>
+		<SimpleData name="tipus">Trinxera de comunicacions</SimpleData>
+		<SimpleData name="dist_cc">377.00</SimpleData>
+		<SimpleData name="dist_per">448.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.192408351101968,41.392457339255643 2.192657004084648,41.392374785291807 2.192788894310979,41.392044947211339 2.192247391429179,41.39190880823741 2.192251859096796,41.391547915741143 2.191628104023464,41.391603689121936 2.191680647705051,41.391231103594848 2.191122582940074,41.391142966159336 2.191206034163094,41.390854813679361 2.191111380539973,41.390757901917077 2.190727248579947,41.390815354764911 2.190641851245356,41.390616245946759 2.190477402725911,41.390575023478689 2.190225024497808,41.390733621117008 2.190576759926383,41.390712034438288 2.19063797168129,41.390929019371278 2.191054202412236,41.390859761706331 2.190953881053199,41.391219980229224 2.191528069840135,41.391296200983724 2.191491052685471,41.391704987924108 2.192098983144836,41.391637073381666 2.192062863086067,41.391973682020044 2.192572565463349,41.392097567912266 2.192408351101968,41.392457339255643</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siege_works">
+		<SimpleData name="id">21</SimpleData>
+		<SimpleData name="nom">TCOM1</SimpleData>
+		<SimpleData name="descripcio">Trinxera de comunicacions entre la 1era parallela i Caputxins</SimpleData>
+		<SimpleData name="tipus">Trinxera de comunicacions</SimpleData>
+		<SimpleData name="dist_cc">514.00</SimpleData>
+		<SimpleData name="dist_per">580.00</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>2.185467886690081,41.397042227129916 2.185739013689076,41.396777565819853 2.185214126111095,41.396689578910241 2.184513895735456,41.396468063969508 2.183525805912703,41.396268563978232 2.182632672049967,41.396141914806805 2.18068545012771,41.395983695906821 2.179630149498204,41.396048361059933 2.177646438120859,41.396250753985932 2.176205282892512,41.396505121698567 2.175418350052984,41.396790126553519 2.175847737211784,41.396983792315773 2.175911944657156,41.396960190658376 2.177417924422369,41.396634105456677 2.180107000580047,41.396244252565502 2.181511656539602,41.396350499743448 2.183362735690997,41.396532083892126 2.185467886690081,41.397042227129916</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>
