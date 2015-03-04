@@ -130,7 +130,8 @@ main<-function(nAgents=100,
                 
                 #store output
                 #rawTraitsList[[t]]=as.character(apply(Agents[,1:3],1,paste,collapse=""))
-                diversitySequence[t]=diversity(table(as.character(apply(Agents[,1:3],1,paste,collapse=""))),"simpson")
+                if (nTraits==1) {diversitySequence[t]=diversity(table(Agents[,1]),"simpson")}
+                if (nTraits>1) {diversitySequence[t]=diversity(table(as.character(apply(Agents[,1:nTraits],1,paste,collapse=""))),"simpson")}
                 if(plotSim==TRUE)
                     {
                         par(mfrow=c(1,2))
