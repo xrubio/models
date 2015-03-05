@@ -88,8 +88,8 @@ main<-function(nAgents=100,
                               if(!is.na(targetAgentIndex[a]))
                                   {
                               Agents[a,copyLocus]=Agents[targetAgentIndex[a],copyLocus]
-                                  }
                               if(runif(1)<innovationRate){Agents[a,copyLocus]=sample(1:nTraits,size=1)}  #innovation       
+                                  }
                           }
                   }
 
@@ -116,8 +116,8 @@ main<-function(nAgents=100,
                                               if(length(tmp)==1){Agents[a,copyLocus]=tmp}
                                               if(length(tmp)>1){Agents[a,copyLocus]=sample(tmp,1)}
                                           }
-                                          }
-                               if(runif(1)<innovationRate){Agents[a,copyLocus]=sample(1:nTraits,size=1)}   #innovation      
+                                   if(runif(1)<innovationRate){Agents[a,copyLocus]=sample(1:nTraits,size=1)}   #innovation      
+                                  }
                            }
 
 
