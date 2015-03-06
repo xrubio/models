@@ -19,12 +19,8 @@ param<-data.frame(nAgents=round(runif(10,50,500)),replacementRate=0.1,
                   interactionRadius=1,moveDistance=1,
                   timeSteps=5,
                   transmissionType="Encounter",innovationRate=0.01,nTraits=3,
-                  nRuns=round(runif(10,1,3)))
+                  nRuns=1)
                   
-                  
-                  
-	
-
 
 
 transmissionExecuter<-function(param,allSteps=FALSE)
@@ -48,7 +44,7 @@ transmissionExecuter<-function(param,allSteps=FALSE)
                       transmissionType=param$transmissionType[x],
                       replacementRate=param$replacementRate[x],
                       innovationRate=param$innovationRate[x],
-                      traitRange=c(0,1,2,3,4),plotSim=FALSE,verbose=FALSE)
+                      nTraitRange=c(0,1,2,3,4),plotSim=FALSE,verbose=FALSE)
                     runCounter=runCounter+1
                     
                     if (allSteps==TRUE)
