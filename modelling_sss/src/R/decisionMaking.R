@@ -14,7 +14,7 @@
 # energyCost ::: ammount of enegry spent by each agent each timestep.
 
 
-nAgents=100;energyCost=9;maxEnergy=100;resourceGrowthRate=2;nSteps=1000;dimX=30;dimY=30;memory=FALSE;decisionType=c("greedy");plot=TRUE;verbose=TRUE
+#nAgents=100;energyCost=9;maxEnergy=100;resourceGrowthRate=2;nSteps=1000;dimX=30;dimY=30;memory=FALSE;decisionType=c("greedy");plot=TRUE;verbose=TRUE
 
 
 

@@ -14,7 +14,7 @@ set.seed(Args)
 param<-data.frame(nAgents=round(runif(1,50,500)),replacementRate=0.1,
                   xDim=10,yDim=10,
                   interactionRadius=1,moveDistance=1,
-                  timeSteps=5,
+                  timeSteps=5000,
                   transmissionType=c("vertical","encounter","prestige","conformist"),
                   innovationRate=0.01,nTraits=3,
                   nRuns=1,stringsAsFactors=FALSE)

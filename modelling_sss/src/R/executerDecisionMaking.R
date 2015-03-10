@@ -16,9 +16,10 @@ decisionMakingExecuter<-function(param,allSteps=FALSE)
     nAgentsRes=NA
     run=NA
     nSteps=NA
-    
+    pb <- txtProgressBar(min = 1, max = nrow(param), style = 3)
     for (x in 1:nrow(param))
         {
+            
             for (y in 1:param$nRuns[x])
                 {
                     tmp<-main(nAgents=param$nAgents[x],
@@ -44,9 +45,10 @@ decisionMakingExecuter<-function(param,allSteps=FALSE)
                         run=c(run,runCounter)
                         nAgentsRes=c(nAgentsRes,tmp[length(tmp)])
                         }
-                   }
+                }
+            setTxtProgressBar(pb, x)
         }
-    
+    close(pb)
     nAgentsRes=nAgentsRes[-1]
     run=run[-1]
     

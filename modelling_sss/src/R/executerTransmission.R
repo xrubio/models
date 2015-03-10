@@ -29,7 +29,7 @@ transmissionExecuter<-function(param,allSteps=FALSE)
     simpRes=NA
     run=NA
     timeSteps=NA
-    
+    pb <- txtProgressBar(min = 1, max = nrow(param), style = 3)
     for (x in 1:nrow(param))
         {
             for (y in 1:param$nRuns[x])
@@ -57,9 +57,11 @@ transmissionExecuter<-function(param,allSteps=FALSE)
                         run=c(run,runCounter)
                         simpRes=c(simpRes,tmp[length(tmp)])
                         }
-                   }
+                }
+                        setTxtProgressBar(pb, x)
+
         }
-    
+    close(pb)
     simpRes=simpRes[-1]
     run=run[-1]
     

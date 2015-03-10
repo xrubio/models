@@ -17,7 +17,7 @@
 
 # 5. Set up the job array.  In this instance we have requested 10000 tasks
 # numbered 1 to 10000.
-#$ -t 1-1000
+#$ -t 1-100
 
 # 6. Set the name of the job.
 #$ -N experiment1
@@ -51,5 +51,5 @@ Rscript  /home/tcrnerc/Scratch/models/ecosociety/experiment1.R $SGE_TASK_ID
 #Rscript  /home/tcrnerc/Scratch/models/<Rscript> $SGE_TASK_ID
 #tar zcvf $HOME/Scratch/output/res$SGE_TASK_ID $TMPDIR
 #
-mv *.RData $HOME/Scratch/output/ecosociety/experiment1/
+mv *.csv $HOME/Scratch/output/ecosociety/experiment1/
 #mv *.RData $HOME/Scratch/output/<modelN>/<experimentN>
