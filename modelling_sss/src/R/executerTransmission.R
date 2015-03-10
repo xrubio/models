@@ -19,9 +19,8 @@ param<-data.frame(nAgents=round(runif(10,50,500)),replacementRate=0.1,
                   interactionRadius=1,moveDistance=1,
                   timeSteps=5,
                   transmissionType="Encounter",innovationRate=0.01,nTraits=3,
-                  nRuns=1)
+                  nRuns=1,stringsAsFactors=FALSE)
                   
-
 
 transmissionExecuter<-function(param,allSteps=FALSE)
 {
@@ -77,7 +76,8 @@ transmissionExecuter<-function(param,allSteps=FALSE)
                 timeSteps=timeSteps,
                 nTraits=rep(param$nTraits,param$nRuns*param$timeSteps),
                 replacementRate=rep(param$replacementRate,param$nRuns*param$timeSteps),
-                innovationRate=rep(param$innovationRate,param$nRuns*param$timeSteps))
+                innovationRate=rep(param$innovationRate,param$nRuns*param$timeSteps),
+                transmissionType=rep(param$transmissionType,param$nRuns*param$timeSteps))
         }
     
     if (allSteps==FALSE)
@@ -91,7 +91,8 @@ transmissionExecuter<-function(param,allSteps=FALSE)
                 step=rep(param$timeSteps,param$nRuns),
                 nTraits=rep(param$nTraits,param$nRuns),
                 replacementRate=rep(param$replacementRate,param$nRuns),
-                innovationRate=rep(param$innovationRate,param$nRuns))
+                innovationRate=rep(param$innovationRate,param$nRuns),
+                transmissionType=rep(param$transmissionType,param$nRuns))
         }
     
 return(result)
