@@ -21,6 +21,6 @@ param<-data.frame(nAgents=round(runif(1,1,200)),
 res=decisionMakingExecuter(param,allSteps=TRUE)
 res$seed=Args
 name<-paste("./res",Args,".csv",sep="")
-res=data.frame(nAgents=res$nAgents,numberOfAgents=res$numberOfAgents,decisionType=res$decisionType,memory=res$memory,seed=res$seed,run=res$run)
+res=data.frame(nAgents=res$nAgents,numberOfAgents=res$numberOfAgents,decisionType=res$decisionType,memory=res$memory,seed=Args)
 save(res,file=name)
 
