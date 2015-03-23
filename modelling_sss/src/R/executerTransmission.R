@@ -19,13 +19,8 @@ param<-data.frame(nAgents=round(runif(10,50,500)),replacementRate=0.1,
                   interactionRadius=1,moveDistance=1,
                   timeSteps=5,
                   transmissionType="Encounter",innovationRate=0.01,nTraits=3,
-                  nRuns=round(runif(10,1,3)))
+                  nRuns=1,stringsAsFactors=FALSE)
                   
-                  
-                  
-	
-
-
 
 transmissionExecuter<-function(param,allSteps=FALSE)
 {
@@ -34,7 +29,7 @@ transmissionExecuter<-function(param,allSteps=FALSE)
     simpRes=NA
     run=NA
     timeSteps=NA
-    
+    pb <- txtProgressBar(min = 1, max = nrow(param), style = 3)
     for (x in 1:nrow(param))
         {
             for (y in 1:param$nRuns[x])
@@ -48,7 +43,7 @@ transmissionExecuter<-function(param,allSteps=FALSE)
                       transmissionType=param$transmissionType[x],
                       replacementRate=param$replacementRate[x],
                       innovationRate=param$innovationRate[x],
-                      traitRange=c(0,1,2,3,4),plotSim=FALSE,verbose=FALSE)
+                      nTraitRange=c(0,1,2,3,4),plotSim=FALSE,verbose=FALSE)
                     runCounter=runCounter+1
                     
                     if (allSteps==TRUE)
@@ -62,9 +57,11 @@ transmissionExecuter<-function(param,allSteps=FALSE)
                         run=c(run,runCounter)
                         simpRes=c(simpRes,tmp[length(tmp)])
                         }
-                   }
+                }
+                        setTxtProgressBar(pb, x)
+
         }
-    
+    close(pb)
     simpRes=simpRes[-1]
     run=run[-1]
     
@@ -81,7 +78,8 @@ transmissionExecuter<-function(param,allSteps=FALSE)
                 timeSteps=timeSteps,
                 nTraits=rep(param$nTraits,param$nRuns*param$timeSteps),
                 replacementRate=rep(param$replacementRate,param$nRuns*param$timeSteps),
-                innovationRate=rep(param$innovationRate,param$nRuns*param$timeSteps))
+                innovationRate=rep(param$innovationRate,param$nRuns*param$timeSteps),
+                transmissionType=rep(param$transmissionType,param$nRuns*param$timeSteps))
         }
     
     if (allSteps==FALSE)
@@ -95,7 +93,8 @@ transmissionExecuter<-function(param,allSteps=FALSE)
                 step=rep(param$timeSteps,param$nRuns),
                 nTraits=rep(param$nTraits,param$nRuns),
                 replacementRate=rep(param$replacementRate,param$nRuns),
-                innovationRate=rep(param$innovationRate,param$nRuns))
+                innovationRate=rep(param$innovationRate,param$nRuns),
+                transmissionType=rep(param$transmissionType,param$nRuns))
         }
     
 return(result)
