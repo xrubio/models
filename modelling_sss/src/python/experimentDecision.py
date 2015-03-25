@@ -1,15 +1,15 @@
 #!/usr/bin/python3
 
-import decisionmaking, random
+import decision, random
 
 def singleRun():
-    params = decisionmaking.Params()
+    params = decision.Params()
     params.decisionType = 'probabilistic'
     params.memory = False 
     params.nSteps = 1000
     params.nAgents = 1
     params.output = 'output_dmp_0.csv'
-    decisionmaking.run(params)
+    decision.run(params)
 
 
 def convergence():
@@ -19,7 +19,7 @@ def convergence():
     decisionTypeSweep = ['greedy']
     memoryMapSweep = [False]
 
-    params = decisionmaking.Params()
+    params = decision.Params()
     params.nSteps = 500
 
     totalRuns = 0
@@ -33,7 +33,7 @@ def convergence():
                 params.nAgents = random.randint(1,200)
                 params.output = 'output_dmp_'+str(params.numRun)+'.csv'
                 totalRuns += 1
-                decisionmaking.run(params)
+                decision.run(params)
 
 
 def all():
@@ -43,7 +43,7 @@ def all():
     decisionTypeSweep = ['greedy','probabilistic']
     memoryMapSweep = [True, False]
 
-    params = decisionmaking.Params()
+    params = decision.Params()
 
     totalRuns = 0
     for i in decisionTypeSweep:
@@ -55,7 +55,7 @@ def all():
                 params.numRun = totalRuns
                 params.output = 'output_dmp_'+str(params.numRun)+'.csv'
                 totalRuns += 1
-                decisionmaking.run(params)
+                decision.run(params)
 
 def main():
     all()

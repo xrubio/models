@@ -1,10 +1,10 @@
 # Transmission Model #
 #
 # nAgents #Number of Agents
-# transmissionType  #type of transmission  // c("vertical","encounter","Presigte","conformist")
+# transmissionType  #type of transmission  // c("Vertical","Encounter","Presigte","Conformist")
 # nTraits #Number of loci
 # Traits #Variable Storing Traits (not used here)
-# nTraitRange #Range of possible values#
+# traitRange #Range of possible values#
 # xDim # dimension of the world (x-coordinate)
 # yDim # dimension of the world (x-coordinate)
 # replacementRate #rate of population replacement
@@ -13,26 +13,28 @@
 # interactionRadius #interaction distance
 # moveDistance #movement distance 
 
-#nTraitRange=c(0,1,2,3,4)
-#nTraits=3
-#nAgents=100
-#xDim=10
-#yDim=10
-#birthRate=0.05
-#deathRate=0.05
-#timeSteps=1000
-#innovationRate=0.1
-#replacementRate=0.05
-#interactionRadius=1
-#moveDistance=1
+
+traitRange=c(0,1,2,3,4)
+nTraits=3
+nAgents=100
+xDim=10
+yDim=10
+birthRate=0.05
+deathRate=0.05
+timeSteps=1000
+innovationRate=0.1
+replacementRate=0.05
+interactionRadius=1
+moveDistance=1
+
+
 
 main<-function(nAgents=100,
                xDim=10,yDim=10,interactionRadius=1,moveDistance=1,
-               timeSteps=5000,
-               nTraits=3,transmissionType=c("vertical","encounter","prestige","conformist"),
-               nTraitRange=c(0,1,2,3,4),prestigeIndex=1,
+               timeSteps=1000,
+               nTraits=3,transmissionType=c("Vertical","Encounter","Prestige","Conformist"),traitRange=c(0,1,2,3,4),
                replacementRate=0.05,
-               innovationRate=0.01,
+               innovationRate=0.1,
                plotSim=TRUE,
                verbose=TRUE)
     {
@@ -44,7 +46,7 @@ main<-function(nAgents=100,
         
         #Initialise Agents as data.frame:
         #Random Traits
-        Agents=as.data.frame(matrix(sample(nTraitRange,size=nTraits*nAgents,replace=TRUE),nrow=nAgents,ncol=nTraits))
+        Agents=as.data.frame(matrix(sample(traitRange,size=nTraits*nAgents,replace=TRUE),nrow=nAgents,ncol=nTraits))
         #Random Location
         Agents$x=runif(nAgents,0,xDim)
         Agents$y=runif(nAgents,0,yDim)
@@ -54,14 +56,12 @@ main<-function(nAgents=100,
         for (t in 1:timeSteps)
             {
                 #move agents
-                Agents[,c(nTraits+1,nTraits+2)]=t(apply(Agents[,c(nTraits+1,nTraits+2)],1,
-                          function(x,y,xDim,yDim){return(move(coordinate=x[c(1,2)],moveDistance=y,xDim=xDim,yDim=yDim))},
-                          y=moveDistance,xDim=xDim,yDim=yDim))
+                Agents[,c(nTraits+1,nTraits+2)]=t(apply(Agents[,c(nTraits+1,nTraits+2)],1,function(x,y,xDim,yDim){return(move(coordinate=x[c(1,2)],moveDistance=y,xDim=xDim,yDim=yDim))},y=moveDistance,xDim=xDim,yDim=yDim))
 
                 #Social Learning
 
                 ############Vertical Transmission###########
-                if (transmissionType=="vertical")
+                if (transmissionType=="Vertical")
                   {
                       reproduce=which(runif(nrow(Agents))<replacementRate) #index of reproducing agents
                       deathNumber=length(reproduce)
@@ -74,7 +74,7 @@ main<-function(nAgents=100,
                 innovationIndex=which(runif(nrow(newAgents))<innovationRate) #index of innovators
                 if (length(innovationIndex)>0) #if innovation happens
                     {
-                        newAgents[innovationIndex,sample(1:nTraits,size=1)]=sample(nTraitRange,size=1)
+                        newAgents[innovationIndex,sample(1:nTraits,size=1)]=sample(traitRange,size=1)
                     }
             }
                 #Update Agents:
@@ -84,46 +84,43 @@ main<-function(nAgents=100,
 
 
                 ############Horrizontal Transmission###########
-                if (transmissionType=="encounter"|transmissionType=="prestige")
+                if (transmissionType=="Encounter"|transmissionType=="Prestige")
                     {
                       Agents<-Agents[sample(1:nrow(Agents)),] #randomise order of agents  
                       coord<-Agents[,-c(1:nTraits)]
                       distMat=as.matrix(dist(coord))
-                      diag(distMat)=NA #Ensure Self if excluded
-                      targetAgentIndex<-apply(distMat,1,neighbourChooser,radius=interactionRadius) #select random neighbour
-                      if(transmissionType=="prestige") 
-                          {
-                             transmissionProbability=(Agents[targetAgentIndex,prestigeIndex]+1)/(max(nTraitRange)+1) #retrieve transmission probability
-                             targetAgentIndex[which(runif(1)>transmissionProbability)]=NA 
-                         }
+                      if(transmissionType=="Encounter")
+                          {targetAgentIndex<-apply(distMat,1,neighbourChooser,radius=interactionRadius)}
+                      if(transmissionType=="Prestige")
+                          {targetAgentIndex<-apply(distMat,1,neighbourChooser,radius=interactionRadius,weights=Agents[,1])}
+
+                      
                       
                       for (a in 1:nrow(Agents))
                           {
                               copyLocus=sample(1:nTraits,size=1)
                               if(!is.na(targetAgentIndex[a]))
                                   {
-                                      Agents[a,copyLocus]=Agents[targetAgentIndex[a],copyLocus]
-                                      if(runif(1)<innovationRate){Agents[a,copyLocus]=sample(1:nTraits,size=1)}  #innovation       
+                              Agents[a,copyLocus]=Agents[targetAgentIndex[a],copyLocus]
                                   }
+                              if(runif(1)<innovationRate){Agents[a,copyLocus]=sample(1:nTraits,size=1)}  #innovation       
                           }
                   }
 
 
                 ############Conformist Transmission###########
 
-                if (transmissionType=="conformist")
+                if (transmissionType=="Conformist")
 
                     {
                       Agents<-Agents[sample(1:nrow(Agents)),] #randomise order of agents  
                       coord<-Agents[,-c(1:nTraits)]
                       distMat=as.matrix(dist(coord))
-                      diag(distMat)=NA #Ensure Self if excluded
-
                       neighbours<-apply(distMat,1,function(x,y){return(as.numeric(x<y))},y=interactionRadius)
                        for (a in 1:nrow(Agents))
                            {
                               copyLocus=sample(1:nTraits,size=1)
-                              if(any(neighbours[a,]>0,na.rm=TRUE))
+                              if(any(neighbours[a,]>0))
                                   {
                                       targetTraits=table(Agents[which(neighbours[a,]==1),copyLocus])
                                       if (length(targetTraits)==1){Agents[a,copyLocus]=as.numeric(names(targetTraits))}
@@ -133,8 +130,8 @@ main<-function(nAgents=100,
                                               if(length(tmp)==1){Agents[a,copyLocus]=tmp}
                                               if(length(tmp)>1){Agents[a,copyLocus]=sample(tmp,1)}
                                           }
-                                      if(runif(1)<innovationRate){Agents[a,copyLocus]=sample(1:nTraits,size=1)}   #innovation      
-                                  }
+                                          }
+                               if(runif(1)<innovationRate){Agents[a,copyLocus]=sample(1:nTraits,size=1)}   #innovation      
                            }
 
 
@@ -147,13 +144,12 @@ main<-function(nAgents=100,
                 
                 #store output
                 #rawTraitsList[[t]]=as.character(apply(Agents[,1:3],1,paste,collapse=""))
-                if (nTraits==1) {diversitySequence[t]=diversity(table(Agents[,1]),"simpson")}
-                if (nTraits>1) {diversitySequence[t]=diversity(table(as.character(apply(Agents[,1:nTraits],1,paste,collapse=""))),"simpson")}
+                diversitySequence[t]=diversity(table(as.character(apply(Agents[,1:3],1,paste,collapse=""))),"simpson")
                 if(plotSim==TRUE)
                     {
                         par(mfrow=c(1,2))
                         plot(1,1,xlim=c(0,xDim),ylim=c(0,yDim),xlab="x",ylab="y",type="n",main=t)
-                        colors=(Agents[,1:nTraits]+1)*1/(max(nTraitRange)+1)
+                        colors=(Agents[,1:nTraits]+1)*1/(max(traitRange)+1)
                         colors=apply(colors,1,function(x){return(rgb(red=x[1],green=x[2],blue=x[3]))})
                         points(Agents$x,Agents$y,col=colors,pch=20,cex=2)
                         plot(1:t,diversitySequence[1:t],type="l",xlab="time",ylab="diversity",xlim=c(0,timeSteps),ylim=c(0,1))
@@ -206,19 +202,23 @@ move<-function(coordinate,moveDistance=1,xDim,yDim)
 return(c(x1,y1))
     }
 
-# Choose one random agents within a neighbourhood of distance "radius".
-# x is the distance vector to the other agents
-
-neighbourChooser<-function(x,radius)
+# Choose one random agents within a neighbourhood of distance "radius". A weight can be supplied : 
+neighbourChooser<-function(x,radius,weights=NA)
     {
+        if (all(is.na(weights))){weights=rep(1,length(x))}
         finalIndex=NA
-        if (any(x<radius,na.rm=TRUE))
+        if (any(x<radius))
             {
                 index=which(x<radius)
                 if(length(index)>1)
-                    {finalIndex=sample(as.numeric(index),size=1)}
+                    {finalIndex=sample(as.numeric(index),size=1,prob=weights[index]+1)}
                 if(length(index)==1)
                     {finalIndex=index}
             }
         return(finalIndex)
     }
+
+
+
+
+

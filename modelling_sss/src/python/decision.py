@@ -63,6 +63,10 @@ class BaseAgent:
                     maxValue = newValue
                     candidates = []
                     candidates.append(candidate)
+    
+        # if all is 0 do not move
+        if maxValue==0:
+            return
         random.shuffle(candidates)
         self.pos = candidates[0]
 
@@ -85,10 +89,8 @@ class BaseAgent:
                     continue
                 candidates.append(candidate)
                 values.append(resourceMap.getValue(candidate))
-        # if there is no energy in any cell random move
+        # if there is no energy in any cell do not move
         if sum(values)==0:
-            random.shuffle(candidates)
-            self.pos = candidates[0]
             return
         index = self.sample(values)
         self.pos = candidates[index]

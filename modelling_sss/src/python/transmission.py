@@ -28,6 +28,7 @@ class BaseAgent:
     moveDistance = 1.0
     xDim = 10
     yDim = 10
+    replacementRate = 0.1
 
     # list of all agents
     agents = None
@@ -52,10 +53,10 @@ class BaseAgent:
         # vertical transmission
         for i,value in enumerate(self.traits):
             newAgent.traits[i] = value
-        # innovation
-        if random.random()<self.innovationRate:
+        # innovation is divided by replacement rate to enable comparison with the other models
+        if random.random()<(self.innovationRate/self.replacementRate):
             innovationIndex = random.randint(0,len(newAgent.traits)-1)
-            newAgent.traits[innovationIndex] = random.randint(0, self.nTraitRange)
+            newAgent.traits[innovationIndex] = random.randint(0, self.nTraitRange-1)
         return newAgent
 
     def correctPos(self, newPos):
@@ -87,29 +88,30 @@ class BaseAgent:
         return(content)
 
 class EncounterAgent(BaseAgent):
-    interactionRadius = 5.0
+    interactionRadius = 1.0
 
     def __init__(self, pos, nTraits, nTraitRange):
         BaseAgent.__init__(self, pos, nTraits, nTraitRange)
 
-    def copyTrait(self, candidate):
-        self.transmission(candidate)
- 
+    def getNeighbors(self):
+        candidates = list()
+        for agent in self.agents:
+            if agent.pos.distance(self.pos) >= self.interactionRadius:
+                continue
+            candidates.append(agent) 
+        return candidates
+
     def transmission(self, candidate):
         traitToCopy = random.randint(0,len(self.traits)-1)
         # innovation
         if random.random()<self.innovationRate:
-            self.traits[traitToCopy] = random.randint(0, self.nTraitRange)
+            self.traits[traitToCopy] = random.randint(0, self.nTraitRange-1)
         # transmission
         else:
             self.traits[traitToCopy] = candidate.traits[traitToCopy]
 
     def selectNeighbour(self):
-        candidates = list()
-        for agent in self.agents:
-            if agent.pos.distance(self.pos) >= self.interactionRadius:
-                continue
-            candidates.append(agent)
+        candidates = self.getNeighbors()
         if len(candidates)==0:
             return None
         random.shuffle(candidates)
@@ -121,32 +123,27 @@ class EncounterAgent(BaseAgent):
         # no agents inside interactionRadius
         if candidate == None:
             return
-        self.copyTrait(candidate)
+        self.transmission(candidate)
 
 class PrestigeAgent(EncounterAgent):
     prestigeIndex = 0
 
     def __init__(self, pos, nTraits, nTraitRange):
         EncounterAgent.__init__(self, pos, nTraits, nTraitRange)
-
-    def copyTrait(self, candidate):
-        # if value prestige index of candidate lower or equal no copy
-        if candidate.traits[self.prestigeIndex]<=self.traits[self.prestigeIndex]:
+  
+    def step(self):
+        self.move()
+        candidate = self.selectNeighbour()
+        if candidate == None:
             return
-        self.transmission(candidate)
+        probability = (candidate.traits[self.prestigeIndex]+1)/(self.nTraitRange)
+        if random.random()<probability:
+            self.transmission(candidate)
 
 class ConformistAgent(EncounterAgent):
     def __init__(self, pos, nTraits, nTraitRange):
         EncounterAgent.__init__(self, pos, nTraits, nTraitRange)
    
-    def getNeighbors(self):
-        candidates = list()
-        for agent in self.agents:
-            if agent.pos.distance(self.pos) >= self.interactionRadius:
-                continue
-            candidates.append(agent) 
-        return candidates
-
     def step(self):
         self.move()
         analysedIndex = random.randint(0,len(self.traits)-1)
@@ -185,13 +182,13 @@ def computeFrequencies():
         for i in reversed(range(0,len(agent.traits))):
             genotype += base*agent.traits[i]
             base *= 10
-            try:
-                position = traits.index(genotype)
-            except ValueError:
-                position = len(traits)
-                traits.append(genotype)
-                frequencies.append(0)
-            frequencies[position] += 1
+        try:
+            position = traits.index(genotype)
+        except ValueError:
+            position = len(traits)
+            traits.append(genotype)
+            frequencies.append(0)
+        frequencies[position] += 1
     return frequencies
 
 def storeDiversity(output, params, step):
@@ -202,6 +199,7 @@ def storeDiversity(output, params, step):
 
     for frequency in frequencies:
         value += pow((frequency/total),2)
+    value = 1.0 - value
     output.write(str(params.numRun)+';'+str(params.nAgents)+';'+params.transmissionType+';')
     if params.storeAllSteps:
         output.write(str(step)+';')
@@ -211,7 +209,7 @@ class Params:
     def __init__(self):
         # base config
         self.numRun = 0
-        self.output = 'output_dmp.csv'
+        self.output = 'output_tr.csv'
         self.nAgents = 100
         self.nSteps = 1000
         self.storeAllSteps = True
@@ -227,11 +225,11 @@ class Params:
         self.nTraitRange = 5
 
         self.moveDistance = 1.0
+        self.interactionRadius = 1.0
         # percentage of agents replaced every time step
         self.replacementRate = 0.1        
         # prob of changing a trait
         self.innovationRate = 0.01
-
 
 def run(params):
     
@@ -240,6 +238,8 @@ def run(params):
     BaseAgent.moveDistance = params.moveDistance
     BaseAgent.xDim = params.xDim
     BaseAgent.yDim = params.yDim
+    BaseAgent.replacementRate = params.replacementRate
+    EncounterAgent.interactionRadius = params.interactionRadius
 
     transmission = TransmissionType.eVertical
     if params.transmissionType=='encounter':
@@ -275,14 +275,14 @@ def run(params):
     for i in range(0,params.nSteps):
         # random execution of the agents
         random.shuffle(BaseAgent.agents)
-        print('next step:',i,'agents:',len(BaseAgent.agents))
+        #print('next step:',i,'agents:',len(BaseAgent.agents))
         for agent in BaseAgent.agents:
             agent.step()
 
-        # TODO vertical transmission is the only one with replacements?
+        # vertical transmission is the only one with replacements
         if transmission==TransmissionType.eVertical:
              # replacements
-            replacementNum = int(len(BaseAgent.agents)*params.replacementRate)
+            replacementNum = int(len(BaseAgent.agents)*BaseAgent.replacementRate)
             # add as many agents as replacementNum
             BaseAgent.newAgents = list()
             for rep in range(0,replacementNum):
@@ -299,7 +299,7 @@ def run(params):
             BaseAgent.agents += BaseAgent.newAgents
 
         # if all steps must be stored or it is the last step then store
-        if params.storeAllSteps==True or i==(params.nStep-1):
+        if params.storeAllSteps==True or i==(params.nSteps-1):
             # store simpsons index
             storeDiversity(output, params, i)
     output.close()
