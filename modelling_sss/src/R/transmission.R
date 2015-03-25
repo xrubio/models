@@ -11,7 +11,8 @@
 # timeSteps #number of time-steps
 # innovationRate #rate of innovation
 # interactionRadius #interaction distance
-# moveDistance #movement distance
+# moveDistance #movement distance 
+
 
 traitRange=c(0,1,2,3,4)
 nTraits=3

@@ -77,7 +77,7 @@ main<-function(nAgents=100,spendEnergy=9,maxEnergy=100,resourceGrowthRate=2,
                                 collection=maxEnergy-agents[a,1]
                                 if(collection<=resource[agents[a,2],agents[a,3]])
                                     {resource[agents[a,2],agents[a,3]]= resource[agents[a,2],agents[a,3]]-collection}
-                                if(collection>resource[agents[a,2],agents[a,3]])
+                                else
                                     {collection=resource[agents[a,2],agents[a,3]]
                                      resource[agents[a,2],agents[a,3]]=0}
                                 agents[a,1]=collection+agents[a,1]
