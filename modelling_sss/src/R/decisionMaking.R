@@ -69,14 +69,20 @@ main<-function(nAgents=100,energyCost=9,maxEnergy=100,resourceGrowthRate=2,
                                         agents[a,2:3]=tmp[[2]]
                                     }
                                 
-                                #agents consume
-                                collection=maxEnergy-agents[a,1]
-                                if(collection<=resource[agents[a,2],agents[a,3]])
-                                    {resource[agents[a,2],agents[a,3]]= resource[agents[a,2],agents[a,3]]-collection}
-                                else
-                                    {collection=resource[agents[a,2],agents[a,3]]
-                                     resource[agents[a,2],agents[a,3]]=0}
+                                        #agents consume
+
+                                energyInCell=resource[agents[a,2],agents[a,3]]
+                                collection=round(runif(1,0,energyInCell))
+                                resource[agents[a,2],agents[a,3]]=energyInCell-collection
                                 agents[a,1]=collection+agents[a,1]
+                                
+                                #collection=maxEnergy-agents[a,1]
+                               # if(collection<=resource[agents[a,2],agents[a,3]])
+                               #     {resource[agents[a,2],agents[a,3]]= resource[agents[a,2],agents[a,3]]-collection}
+                               # else
+                               #     {collection=resource[agents[a,2],agents[a,3]]
+                               #      resource[agents[a,2],agents[a,3]]=0}
+                               # agents[a,1]=collection+agents[a,1]
                             }
                 
               
