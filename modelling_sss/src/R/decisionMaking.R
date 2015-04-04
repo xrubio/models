@@ -73,24 +73,32 @@ main<-function(nAgents=100,spendEnergy=9,maxEnergy=100,resourceGrowthRate=2,
                                         agents[a,2:3]=tmp[[2]]
                                     }
                                 
-                                #agents consume
-                                collection=maxEnergy-agents[a,1]
-                                if(collection<=resource[agents[a,2],agents[a,3]])
-                                    {resource[agents[a,2],agents[a,3]]= resource[agents[a,2],agents[a,3]]-collection}
-                                else
-                                    {collection=resource[agents[a,2],agents[a,3]]
-                                     resource[agents[a,2],agents[a,3]]=0}
+                                        #agents consume
+
+                                energyInCell=resource[agents[a,2],agents[a,3]]
+                                collection=round(runif(1,0,energyInCell))
+                                resource[agents[a,2],agents[a,3]]=energyInCell-collection
                                 agents[a,1]=collection+agents[a,1]
+                                
+                                #collection=maxEnergy-agents[a,1]
+                               # if(collection<=resource[agents[a,2],agents[a,3]])
+                               #     {resource[agents[a,2],agents[a,3]]= resource[agents[a,2],agents[a,3]]-collection}
+                               # else
+                               #     {collection=resource[agents[a,2],agents[a,3]]
+                               #      resource[agents[a,2],agents[a,3]]=0}
+                               # agents[a,1]=collection+agents[a,1]
                             }
                 
               
                 #STEP 2: Reproduce#
-                if(any(agents$energy==maxEnergy))
+                if(any(agents$energy>=maxEnergy))
                     {
-                        mothers=which(agents[,1]==maxEnergy)
-                        agents[mothers,1]=agents[mothers,1]/2
-                        agents<-rbind(agents,agents[mothers,])
-                        if(memory==TRUE){cognitiveMaps<-c(cognitiveMaps,cognitiveMaps[mothers])}
+                        parents=which(agents[,1]>=maxEnergy)
+                        agents[parents,1]=agents[parents,1]-maxEnergy/2 #consume half maxEnergy 
+                        offspring=agents[parents,] #create offspring with same coordinate
+                        offspring[,1]=maxEnergy/2 #with hald energy
+                        agents<-rbind(agents,offspring)
+                        if(memory==TRUE){cognitiveMaps<-c(cognitiveMaps,cognitiveMaps[parents])} #with same cognitive maps as parents
                     }
 
                 #STEP 3: Spend Energy#
