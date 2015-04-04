@@ -92,7 +92,7 @@ main<-function(nAgents=100,energyCost=9,maxEnergy=100,resourceGrowthRate=2,
                         parents=which(agents[,1]>=maxEnergy)
                         agents[parents,1]=agents[parents,1]-maxEnergy/2 #consume half maxEnergy 
                         offspring=agents[parents,] #create offspring with same coordinate
-                        offspring[1,]=maxEnergy/2 #with hald energy
+                        offspring[,1]=maxEnergy/2 #with hald energy
                         agents<-rbind(agents,offspring)
                         if(memory==TRUE){cognitiveMaps<-c(cognitiveMaps,cognitiveMaps[parents])} #with same cognitive maps as parents
                     }
