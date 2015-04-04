@@ -87,12 +87,14 @@ main<-function(nAgents=100,energyCost=9,maxEnergy=100,resourceGrowthRate=2,
                 
               
                 #STEP 2: Reproduce#
-                if(any(agents$energy==maxEnergy))
+                if(any(agents$energy>=maxEnergy))
                     {
-                        mothers=which(agents[,1]==maxEnergy)
-                        agents[mothers,1]=agents[mothers,1]/2
-                        agents<-rbind(agents,agents[mothers,])
-                        if(memory==TRUE){cognitiveMaps<-c(cognitiveMaps,cognitiveMaps[mothers])}
+                        parents=which(agents[,1]>=maxEnergy)
+                        agents[parents,1]=agents[parents,1]-maxEnergy/2 #consume half maxEnergy 
+                        offspring=agents[parents,] #create offspring with same coordinate
+                        offspring[1,]=maxEnergy/2 #with hald energy
+                        agents<-rbind(agents,offspring)
+                        if(memory==TRUE){cognitiveMaps<-c(cognitiveMaps,cognitiveMaps[parents])} #with same cognitive maps as parents
                     }
 
                 #STEP 3: Spend Energy#
