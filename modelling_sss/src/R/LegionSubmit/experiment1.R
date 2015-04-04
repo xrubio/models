@@ -13,7 +13,7 @@ set.seed(Args)
 
 param<-data.frame(nAgents=round(runif(1,1,200)),
                   dimX=30,dimY=30,
-                  resourceGrowthRate=2,maxEnergy=100,energyCost=9,
+                  resourceGrowthRate=20,maxEnergy=100,energyCost=25,
                   nSteps=1000,decisionType=rep(c("greedy","probabilistic"),2),memory=c(rep(TRUE,2),rep(FALSE,2)),
                   nRuns=1,stringsAsFactors=FALSE)
                   
