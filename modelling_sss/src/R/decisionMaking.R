@@ -70,7 +70,7 @@ main<-function(nAgents=100,energyCost=25,maxEnergy=100,resourceGrowthRate=20,
                                     }
                                 
                                         #agents consume
-                                base=resource[agents[a,2],agents[a,3]]
+                                base=0
                                 collection=maxEnergy-agents[a,1] #max possible collection
                                 energyInCell=round(runif(1,base,resource[agents[a,2],agents[a,3]])) #perceived ammount of energy
                                 if(collection>energyInCell)
