@@ -1,6 +1,6 @@
 ###############################################################
 # ~Decision Making Model~
-# by enrico.crema@gmail.com                                      
+# by enrico.crema@gmail.com                                       
 #                                        
 # Parameters:                                       
 # decisionType ::: Type of decision, either "greedy" or "probabilistic"
@@ -70,9 +70,9 @@ main<-function(nAgents=100,energyCost=25,maxEnergy=100,resourceGrowthRate=20,
                                     }
                                 
                                         #agents consume
-                                
+                                base=resource[agents[a,2],agents[a,3]]
                                 collection=maxEnergy-agents[a,1] #max possible collection
-                                energyInCell=round(runif(1,resource[agents[a,2],agents[a,3]],resource[agents[a,2],agents[a,3]])) #perceived ammount of energy
+                                energyInCell=round(runif(1,base,resource[agents[a,2],agents[a,3]])) #perceived ammount of energy
                                 if(collection>energyInCell)
                                     {
                                         collection=energyInCell
