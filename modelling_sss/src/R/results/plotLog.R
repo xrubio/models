@@ -13,7 +13,7 @@ p3<-ggplot(data = subset(data,type=="probabilistic"& memory==TRUE),aes(x=steps, 
 p4<-ggplot(data = subset(data,type=="probabilistic"& memory==FALSE),aes(x=steps, y=nAgents, group=run)) + geom_line(aes(group=run)) +ggtitle("Probabilistic & NoMemory")
 
 multiplot(p1, p3, p2, p4, cols=2)
-dev.print(device=png,"~/github/models/modelling_sss/src/R/results/experiment1_260315.png",width=800,height=600)
+dev.print(device=png,"~/github/models/modelling_sss/src/R/results/experiment1_060415.png",width=800,height=600)
 
 
 # Experiment 2
