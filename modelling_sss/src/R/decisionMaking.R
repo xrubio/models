@@ -14,16 +14,16 @@
 # energyCost ::: ammount of enegry spent by each agent each timestep.
 
 
-#nAgents=100;energyCost=9;maxEnergy=100;resourceGrowthRate=2;nSteps=1000;dimX=30;dimY=30;memory=FALSE;decisionType=c("greedy");plot=TRUE;verbose=TRUE
+#nAgents=100;energyCost=25;maxEnergy=100;resourceGrowthRate=20;nSteps=1000;dimX=30;dimY=30;memory=FALSE;decisionType=c("greedy");plot=FALSE;verbose=FALSE
 
 
 
-main<-function(nAgents=100,energyCost=9,maxEnergy=100,resourceGrowthRate=2,
+main<-function(nAgents=100,energyCost=25,maxEnergy=100,resourceGrowthRate=20,
                nSteps=1000,dimX=30,dimY=30,memory=FALSE,
                decisionType=c("greedy","probabilistic"),
                plot=TRUE,verbose=TRUE)
     {
-        population=numeric() #placeholder for recording population size 
+        population=rep(0,nSteps) #placeholder for recording population size 
         resource=matrix(round(runif(dimX*dimY,0,maxEnergy)),nrow=dimX,ncol=dimY) #initialise resource scape
         maxResource=resource #maximum possible resource value per cell
         #initialise agents as a data.frame:
@@ -72,7 +72,10 @@ main<-function(nAgents=100,energyCost=9,maxEnergy=100,resourceGrowthRate=2,
                                         #agents consume
 
                                 energyInCell=resource[agents[a,2],agents[a,3]]
-                                collection=round(runif(1,0,energyInCell))
+                                maxTake=maxEnergy-agents[a,1]
+                                if (maxTake<energyInCell){ceilingVal=maxTake}
+                                if (maxTake>=energyInCell) {ceilingVal=energyInCell}
+                                collection=round(runif(1,0,ceilingVal))
                                 resource[agents[a,2],agents[a,3]]=energyInCell-collection
                                 agents[a,1]=collection+agents[a,1]
                                 
