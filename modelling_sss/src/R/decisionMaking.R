@@ -1,6 +1,6 @@
 ###############################################################
 # ~Decision Making Model~
-# by enrico.crema@gmail.com                                      
+# by enrico.crema@gmail.com                                       
 #                                        
 # Parameters:                                       
 # decisionType ::: Type of decision, either "greedy" or "probabilistic"
@@ -14,20 +14,17 @@
 # spendEnergy ::: ammount of enegry spent by each agent each timestep.
 
 
-nAgents=100;spendEnergy=9;maxEnergy=100;resourceGrowthRate=2;
-               timeSteps=1000;xDim=30;yDim=30;memory=FALSE;
-               decisionType=c("greedy","probabilistic");
-plot=TRUE;verbose=TRUE
+#nAgents=100;energyCost=25;maxEnergy=100;resourceGrowthRate=20;nSteps=1000;dimX=30;dimY=30;memory=FALSE;decisionType=c("greedy");plot=FALSE;verbose=FALSE
 
 
 
-main<-function(nAgents=100,spendEnergy=9,maxEnergy=100,resourceGrowthRate=2,
-               timeSteps=1000,xDim=30,yDim=30,memory=FALSE,
+main<-function(nAgents=100,energyCost=25,maxEnergy=100,resourceGrowthRate=20,
+               nSteps=1000,dimX=30,dimY=30,memory=FALSE,
                decisionType=c("greedy","probabilistic"),
                plot=TRUE,verbose=TRUE)
     {
-        population=numeric() #placeholder for recording population size 
-        resource=matrix(round(runif(xDim*yDim,0,maxEnergy)),nrow=xDim,ncol=yDim) #initialise resource scape
+        population=rep(0,nSteps) #placeholder for recording population size 
+        resource=matrix(round(runif(dimX*dimY,0,maxEnergy)),nrow=dimX,ncol=dimY) #initialise resource scape
         maxResource=resource #maximum possible resource value per cell
         #initialise agents as a data.frame:
         agents=data.frame(energy=rep(maxEnergy/2,nAgents),x=ceiling(runif(nAgents,0,xDim)),y=ceiling(runif(nAgents,0,xDim)))
@@ -74,31 +71,28 @@ main<-function(nAgents=100,spendEnergy=9,maxEnergy=100,resourceGrowthRate=2,
                                     }
                                 
                                         #agents consume
-
-                                energyInCell=resource[agents[a,2],agents[a,3]]
-                                collection=round(runif(1,0,energyInCell))
-                                resource[agents[a,2],agents[a,3]]=energyInCell-collection
+                                base=0
+                                collection=maxEnergy-agents[a,1] #max possible collection
+                                energyInCell=round(runif(1,base,resource[agents[a,2],agents[a,3]])) #perceived ammount of energy
+                                if(collection>energyInCell)
+                                    {
+                                        collection=energyInCell
+                                        resource[agents[a,2],agents[a,3]]=resource[agents[a,2],agents[a,3]]-collection}
+                                else
+                                    {
+                                        resource[agents[a,2],agents[a,3]]=resource[agents[a,2],agents[a,3]]-collection}
                                 agents[a,1]=collection+agents[a,1]
                                 
-                                #collection=maxEnergy-agents[a,1]
-                               # if(collection<=resource[agents[a,2],agents[a,3]])
-                               #     {resource[agents[a,2],agents[a,3]]= resource[agents[a,2],agents[a,3]]-collection}
-                               # else
-                               #     {collection=resource[agents[a,2],agents[a,3]]
-                               #      resource[agents[a,2],agents[a,3]]=0}
-                               # agents[a,1]=collection+agents[a,1]
-                            }
+                                 }
                 
               
                 #STEP 2: Reproduce#
-                if(any(agents$energy>=maxEnergy))
+                if(any(agents$energy==maxEnergy))
                     {
-                        parents=which(agents[,1]>=maxEnergy)
-                        agents[parents,1]=agents[parents,1]-maxEnergy/2 #consume half maxEnergy 
-                        offspring=agents[parents,] #create offspring with same coordinate
-                        offspring[,1]=maxEnergy/2 #with hald energy
-                        agents<-rbind(agents,offspring)
-                        if(memory==TRUE){cognitiveMaps<-c(cognitiveMaps,cognitiveMaps[parents])} #with same cognitive maps as parents
+                        mothers=which(agents[,1]==maxEnergy)
+                        agents[mothers,1]=agents[mothers,1]/2
+                        agents<-rbind(agents,agents[mothers,])
+                        if(memory==TRUE){cognitiveMaps<-c(cognitiveMaps,cognitiveMaps[mothers])}
                     }
 
                 #STEP 3: Spend Energy#
