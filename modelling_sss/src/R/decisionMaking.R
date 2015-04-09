@@ -18,10 +18,10 @@
 
 
 
-main<-function(nAgents=100,energyCost=25,maxEnergy=100,resourceGrowthRate=20,
-               nSteps=1000,dimX=30,dimY=30,memory=FALSE,
-               decisionType=c("greedy","probabilistic"),
-               plot=TRUE,verbose=TRUE,stochastic=TRUE)
+main<-function(nAgents=10,energyCost=25,maxEnergy=100,resourceGrowthRate=25,
+               nSteps=200,dimX=30,dimY=30,memory=FALSE,
+               decisionType="greedy",
+               plot=F,verbose=TRUE,stochastic=T)
     {
         population=rep(0,nSteps) #placeholder for recording population size 
         resource=matrix(round(runif(dimX*dimY,0,maxEnergy)),nrow=dimX,ncol=dimY) #initialise resource scape
@@ -81,7 +81,8 @@ main<-function(nAgents=100,energyCost=25,maxEnergy=100,resourceGrowthRate=20,
                                         base=resource[agents[a,2],agents[a,3]]
                                     }
                                 collection=maxEnergy-agents[a,1] #max possible collection
-                                energyInCell=round(runif(1,base,resource[agents[a,2],agents[a,3]])) #perceived ammount of energy
+                                energyInCell = sample(base:resource[agents[a,2],agents[a,3]], 1)
+                                #energyInCell=round(runif(1,base,resource[agents[a,2],agents[a,3]])) #perceived ammount of energy
                                 if(collection>energyInCell)
                                     {
                                         collection=energyInCell
