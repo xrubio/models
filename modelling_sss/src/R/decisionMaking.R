@@ -24,10 +24,10 @@ main<-function(nAgents=10,energyCost=25,maxEnergy=100,resourceGrowthRate=25,
                plot=F,verbose=TRUE,stochastic=T)
     {
         population=rep(0,nSteps) #placeholder for recording population size 
-        resource=matrix(round(runif(dimX*dimY,0,maxEnergy)),nrow=dimX,ncol=dimY) #initialise resource scape
+        resource=matrix(sample(0:maxEnergy, replace=T, dimX*dimY),nrow=dimX,ncol=dimY) #initialise resource scape
         maxResource=resource #maximum possible resource value per cell
         #initialise agents as a data.frame:
-        agents=data.frame(energy=rep(maxEnergy/2,nAgents),x=ceiling(runif(nAgents,0,dimX)),y=ceiling(runif(nAgents,0,dimX)))
+        agents=data.frame(energy=rep(maxEnergy/2,nAgents),x=sample(0:dimX,nAgents, replace=T), y=sample(0:dimY,nAgents, replace=T))
 
         #Create cognitive map list in case of memory
            if(memory==TRUE)
@@ -57,8 +57,7 @@ main<-function(nAgents=10,energyCost=25,maxEnergy=100,resourceGrowthRate=25,
                                                   xLimit=c(1,dimX),yLimit=c(1,dimY),
                                                   resourceMatrix=resource,type=decisionType)
                                     }
-
-                                if (memory==TRUE)
+                                else
                                     {
                                         #agents learn and move
                                         tmp=getEnvironmentAndMove(xcor=agents[a,2],ycor=agents[a,3],
@@ -71,27 +70,21 @@ main<-function(nAgents=10,energyCost=25,maxEnergy=100,resourceGrowthRate=25,
                                 
                                         #agents consume
 
+                                collection=maxEnergy-agents[a,1] #max possible collection
                                 if (stochastic==TRUE)
                                     {
-                                        base=0
+                                        energyInCell = sample(0:resource[agents[a,2],agents[a,3]], 1)
                                     }
-
-                                if (stochastic==FALSE)
+                                else
                                     {
-                                        base=resource[agents[a,2],agents[a,3]]
+                                        energyInCell = resource[agents[a,2],agents[a,3]]
                                     }
-                                collection=maxEnergy-agents[a,1] #max possible collection
-                                energyInCell = sample(base:resource[agents[a,2],agents[a,3]], 1)
-                                #energyInCell=round(runif(1,base,resource[agents[a,2],agents[a,3]])) #perceived ammount of energy
                                 if(collection>energyInCell)
                                     {
                                         collection=energyInCell
-                                        resource[agents[a,2],agents[a,3]]=resource[agents[a,2],agents[a,3]]-collection}
-                                else
-                                    {
-                                        resource[agents[a,2],agents[a,3]]=resource[agents[a,2],agents[a,3]]-collection}
-                                agents[a,1]=collection+agents[a,1]
-                                
+                                     }
+                                    resource[agents[a,2],agents[a,3]]=resource[agents[a,2],agents[a,3]]-collection
+                                    agents[a,1]=collection+agents[a,1]
                                  }
                 
               
@@ -106,7 +99,6 @@ main<-function(nAgents=10,energyCost=25,maxEnergy=100,resourceGrowthRate=25,
 
                 #STEP 3: Spend Energy#
                 agents$energy=agents$energy-energyCost
-
 
                 #STEP 4: Death#
                 if(any(agents$energy<=0))
