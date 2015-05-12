@@ -21,7 +21,7 @@
 main<-function(nAgents=10,energyCost=25,maxEnergy=100,resourceGrowthRate=20,
                nSteps=1000,dimX=30,dimY=30,
                decisionType=c("greedy","probabilistic"),
-               plot=TRUE,verbose=TRUE,radius=1,memory=TRUE)
+               plot=TRUE,verbose=TRUE,radius=1)
     {
 
         resource<-expand.grid(x=1:dimX,y=1:dimY)
@@ -36,14 +36,8 @@ main<-function(nAgents=10,energyCost=25,maxEnergy=100,resourceGrowthRate=20,
         #initialise agents as a data.frame:
         agents=data.frame(energy=rep(maxEnergy/2,nAgents),address=sample(nrow(resource),size=nAgents,replace=TRUE))
 
-        #Create cognitive map list in case of memory
-           if(memory==TRUE)
-               {
-                cognitiveMaps=matrix(NA,nrow=nAgents,ncol=nrow(resource)) #matrix with rows for agents, and column for address
-               }
 
-
-        
+       
                           
         #Start of the actual simulation#
         if(verbose==TRUE){pb <- txtProgressBar(min = 1, max = nSteps, style = 3)}
@@ -54,31 +48,7 @@ main<-function(nAgents=10,energyCost=25,maxEnergy=100,resourceGrowthRate=20,
                                         #STEP 1: Observe, Move, and Collect Energy#
 
                                         #Agents Move
-
-                if (memory==TRUE)
-                    {
-                                        #Agents Learn #change to sapply function, consider also past conditions
-                                        #if past NA, then current is updated
-                                        #if past is not NA, then (past+current)/2
-                        
-                if(is.na(past)){myMap[address[x,1],address[x,2]]=current}
-                else if (!is.na(past)){myMap[address[x,1],address[x,2]]=c(past+current)/2}
-
-                
-                        
-                        lapply(destinations[agents$address],function(x,resource,void)
-                            {
-                                void[x]=resource$energy[x]
-                                return(void)
-                            },void=rep(NA,nrow(resource)),resource=resource)
-
-
-
-                    }
-
-
-
-                
+          
                 agents$address=sapply(1:nrow(agents),function(x,agents,resource,destinations)
                     {
                         targetEnergies=resource[destinations[[agents$address[x]]],]$energy
