@@ -188,7 +188,7 @@ else {
     if(type=="probabilistic")
         {
             destinationResource[which(is.na(destinationResource))]=0
-            goto=sample(1:9,size=1,prob=destinationResource)
+            goto=sample(1:nrow(address),size=1,prob=destinationResource)
             if(length(goto)>1){goto=sample(goto,size=1)}
             finaladdress=address[goto,]
         }
