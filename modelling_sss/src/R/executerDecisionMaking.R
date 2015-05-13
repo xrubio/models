@@ -30,6 +30,7 @@ decisionMakingExecuter<-function(param,allSteps=FALSE)
                               nSteps=param$nSteps[x],
                               memory=param$memory[x],
                               decisionType=param$decisionType[x],
+                              radius=param$radius,
                               plot=FALSE,verbose=FALSE)
                     
                     runCounter=runCounter+1
@@ -64,6 +65,7 @@ decisionMakingExecuter<-function(param,allSteps=FALSE)
                 resourceGrowthRate=rep(param$resourceGrowthRate,param$nRuns*param$nSteps),                
                 maxEnergy=rep(param$maxEnergy,param$nRuns*param$nSteps),
                 decisionType=rep(param$decisionType,param$nRuns*param$nSteps),
+                radius=rep(param$radius,param$nRuns*param$nSteps),
                 memory=rep(param$memory,param$nRuns*param$nSteps),
                 nSteps=nSteps)
         }
@@ -78,6 +80,7 @@ decisionMakingExecuter<-function(param,allSteps=FALSE)
                 resourceGrowthRate=rep(param$resourceGrowthRate,param$nRuns),
                 maxEnergy=rep(param$maxEnergy,param$nRuns),               
                 decisionType=rep(param$decisionType,param$nRuns),
+                radius=rep(param$radius,param$nRuns),
                 memory=rep(param$memory,param$nRuns),
                 nSteps=rep(param$nSteps,param$nRuns))
 
