@@ -19,9 +19,9 @@
 
 
 main<-function(nAgents=10,energyCost=25,maxEnergy=100,resourceGrowthRate=25,
-               nSteps=200,dimX=30,dimY=30,memory=FALSE,
+               nSteps=1000,dimX=30,dimY=30,memory=FALSE,
                decisionType="greedy",
-               plot=F,verbose=TRUE,stochastic=T)
+               plot=F,verbose=TRUE,stochastic=T, radius=1)
     {
         population=rep(0,nSteps) #placeholder for recording population size 
         resource=matrix(sample(0:maxEnergy, replace=T, dimX*dimY),nrow=dimX,ncol=dimY) #initialise resource scape
@@ -55,18 +55,22 @@ main<-function(nAgents=10,energyCost=25,maxEnergy=100,resourceGrowthRate=25,
                                     {    
                                         agents[a,2:3]=neighbourhood(xcor=agents[a,2],ycor=agents[a,3],
                                                   xLimit=c(1,dimX),yLimit=c(1,dimY),
-                                                  resourceMatrix=resource,type=decisionType)
+                                                  resourceMatrix=resource,type=decisionType,radius=radius)
                                     }
                                 else
                                     {
                                         #agents learn and move
                                         tmp=getEnvironmentAndMove(xcor=agents[a,2],ycor=agents[a,3],
                                             xLimit=c(1,dimX),yLimit=c(1,dimY),
-                                            resourceMatrix=resource,type=decisionType,myMap=cognitiveMaps[[a]])
+                                            resourceMatrix=resource,type=decisionType,myMap=cognitiveMaps[[a]],radius=radius)
                                         
                                         cognitiveMaps[[a]]=tmp[[1]]
                                         agents[a,2:3]=tmp[[2]]
                                     }
+                            }
+                
+                  for (a in 1:nrow(agents))
+                            {              
                                 
                                         #agents consume
 
@@ -147,13 +151,13 @@ main<-function(nAgents=10,energyCost=25,maxEnergy=100,resourceGrowthRate=25,
 
 
 #utility functions #
-neighbourhood<-function(xcor,ycor,xLimit,yLimit,resourceMatrix,type=c("greedy","probabilistic"))
+neighbourhood<-function(xcor,ycor,xLimit,yLimit,resourceMatrix,type=c("greedy","probabilistic"),radius)
 {
-step=c(-1,0,1)
+step=-radius:radius
 xcor1=xcor+step
 ycor1=ycor+step
 address=expand.grid(x=xcor1,y=ycor1)
-noMove=address[5,]
+noMove=c(xcor,ycor)
 
 if(sum((address$x<xLimit[1]|address$x>xLimit[2]),na.rm=TRUE)>0){address[which(address$x<xLimit[1]|address$x>xLimit[2]),]=NA}
 if(sum((address$y<yLimit[1]|address$y>yLimit[2]),na.rm=TRUE)>0){address[which(address$y<yLimit[1]|address$y>yLimit[2]),]=NA}
@@ -177,7 +181,7 @@ else {
     if(type=="probabilistic")
         {
             destinationResource[which(is.na(destinationResource))]=0
-            goto=sample(1:9,size=1,prob=destinationResource)
+            goto=sample(1:nrow(address),size=1,prob=destinationResource)
             if(length(goto)>1){goto=sample(goto,size=1)}
             finaladdress=address[goto,]
         }
@@ -187,13 +191,13 @@ else {
 
 
 
-getEnvironmentAndMove<-function(xcor,ycor,xLimit,yLimit,resourceMatrix,myMap,type=c("greedy","probabilistic"))
+getEnvironmentAndMove<-function(xcor,ycor,xLimit,yLimit,resourceMatrix,myMap,type=c("greedy","probabilistic"),radius)
     {
-        step=c(-1,0,1)
+        step=-radius:radius
         xcor1=xcor+step
         ycor1=ycor+step
         address=expand.grid(x=xcor1,y=ycor1)
-        noMove=address[5,]
+        noMove=c(xcor,ycor)
         if(sum((address$x<xLimit[1]|address$x>xLimit[2]),na.rm=TRUE)>0)
             {address[which(address$x<xLimit[1]|address$x>xLimit[2]),]=NA}
         if(sum((address$y<yLimit[1]|address$y>yLimit[2]),na.rm=TRUE)>0)

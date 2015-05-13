@@ -11,11 +11,12 @@ Args<-commandArgs(TRUE)
 set.seed(Args)
 
 
-param<-data.frame(nAgents=round(runif(1,1,200)),
+param<-expand.grid(nAgents=50,
                   dimX=30,dimY=30,
-                  resourceGrowthRate=20,maxEnergy=100,energyCost=25,
-                  nSteps=1000,decisionType=rep(c("greedy","probabilistic"),2),memory=c(rep(TRUE,2),rep(FALSE,2)),
-                  nRuns=1,stringsAsFactors=FALSE)
+                  resourceGrowthRate=25,maxEnergy=100,energyCost=25,
+                  nSteps=1000,decisionType=c("greedy","probabilistic"),memory=FALSE,
+                  nRuns=1:10,stringsAsFactors=FALSE,
+                  radius=c(1,5,10,15))
                   
 
 res=decisionMakingExecuter(param,allSteps=TRUE)
