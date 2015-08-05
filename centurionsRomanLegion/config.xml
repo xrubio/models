@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<config>
+    <output resultsFile="./data/legion.h5" logsDir="./logs" />
+    <numSteps value="300" serializeResolution="30" />
+    <size width="300" height="400"/>
+    <battlefield initialDistance="40" />
+    <dynamics killingZone="15" rangedLethality="30" closeCombatLethality="1" />
+    <blueArmy separationBetweenLines="0" stressThreshold="1" centurionFactor="1.5" centurionPosition="2">
+        <line numBlocks="24" ranks="6" columns="10" separationBetweenBlocks="0" offset="0" />
+    </blueArmy>
+    <redArmy separationBetweenLines="0" stressThreshold="1" centurionFactor="1.5" centurionPosition="2">
+        <line numBlocks="24" ranks="6" columns="10" separationBetweenBlocks="0" offset="0" />
+    </redArmy>
+</config>
+
